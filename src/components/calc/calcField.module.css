@@ -1,36 +1,105 @@
+:root{
+  
+    --calc-primary-color: aliceblue; 
+    --calc-secondary-color: rgb(0, 48, 92);
+    --calc-btn-on-color:#009de0;
+    --calc-btn-off-color:rgb(134, 134, 134);
+}
+
+
 .calc-field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number-field{
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
-    align-items:center;
-    gap: 15px;
-    height: 40px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
 }
 
-.input-value{
-    width: 60px;
+.number-container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.input-quantity{
+    width: 75px;
     height: 0px;
-    padding: 15px 0px;
+    padding: 23px 0px;
     text-align: center;
+    font-size: larger;
+    border:none;
+    border-bottom: 1px solid var(--calc-btn-on-color);
+    background-color: transparent;
+    
 }
 
-.calc-field-date{
-    grid-template-columns: 2fr 3fr;
-    justify-content: start;
-    gap: 5px;
-
+.input-quantity:focus{
+    outline: none;
 }
+
+
+.btn-quantity{
+    border-radius: 50%;
+    border: 1px solid var(--calc-btn-on-color);
+    font-size: 25px;
+    cursor:pointer;
+    padding: 5px 10px;
+    background-color: var(--calc-btn-on-color);
+    fill: var(--calc-primary-color);
+    transition: background-color 150ms;
+}
+
+.btn-quantity:hover{
+    background-color: var(--calc-primary-color);
+    fill: var(--calc-btn-on-color);
+}
+
+.span-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.date-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .input-date{
-    width: 200px;
-    
-}
-
-@media only screen and (max-width: 600px) {
-
-    
-    .calc-field{
-        font-size: 15px;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 15px 15px;
+    font-size: 16px;
 
 }
-  
+
+
+
+.calc-field-date{
+    grid-template-columns: 1fr;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

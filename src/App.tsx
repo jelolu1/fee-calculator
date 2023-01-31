@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import { CalcField } from './components/calc/CalcField';
+import { BubbleBackground } from './components/UI/BubbleBackground';
 
 // https://github.com/woltap33p/engineering-summer-intern-2023
 
@@ -51,33 +52,41 @@ function App() {
 
   return (
 
-    <main className={styles['calc-container']}>
-      <header className={styles['calc-header']}>
-      </header>
+
+
+    <section className={styles['calc-container']}>
+      <div className={`${styles["spacer"]} ${ styles["calc-header"]}`}/>
       <form className={styles['calc-form']}>
         <CalcField
           title='Cart Value'
           inputType='number'
           unit='€'
           setValue={setCartValue}
+          fieldValue={cartValue}
         />
         <CalcField
           title='Delivery Distance'
           inputType='number'
           unit='Meters'
           setValue={setDeliveryDistance}
+          fieldValue={deliveryDistance}
+
         />
         <CalcField
           title='Amount of Items'
           inputType='number'
           unit='Items'
           setValue={setNumberOfItems}
+          fieldValue={numberOfItems}
+
         />
         <CalcField
           title='Time'
           inputType='datetime-local'
           unit={null}
           setValue={setOrderTime}
+          fieldValue={orderTime}
+
         />
 
 
@@ -90,10 +99,12 @@ function App() {
 
         <p>Delivery Fee: </p>
       </form>
-      <footer  className={styles['calc-footer']}>
-      </footer>
       
-    </main>
+      <div className={`${styles["spacer"]} ${ styles["calc-footer"]}`}/>
+    </section>
+
+
+
     
   )
 }

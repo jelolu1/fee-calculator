@@ -26,5 +26,5 @@
 .top-bubble{
     position: relative;
     background-color: var(--bubble-color);
-    height: 250px;
+    height: 300px;
 }
