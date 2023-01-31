@@ -1,7 +1,9 @@
 :root{
-  --calc-bg-color: #fff; 
-  --footer-bg-color: rgb(0, 48, 92);
-  --header-bg-color: rgb(0, 48, 92);
+  
+  --calc-primary-color: aliceblue; 
+  --calc-secondary-color: rgb(0, 48, 92);
+  --calc-btn-on-color:#009de0;
+  --calc-btn-off-color:rgb(134, 134, 134);
 }
 
 main{
@@ -17,13 +19,13 @@ main{
   align-items: center;
   width: 500px;
   height: 550px;
-  background: var(--calc-bg-color);
+  background: var(--calc-primary-color);
   border-radius: 15px;
 }
 
 .calc-header,
 .calc-footer{
-  height: 10%;
+  height: 12%;
   width: 100%;  
 }
 
@@ -36,14 +38,48 @@ main{
 
 
 .calc-header{
-  background: var(--header-bg-color);
+  background: var(--calc-secondary-color);
   border-radius: 10px 10px 0px 0px;
 
 }
 .calc-footer{
-  background: var(--footer-bg-color);
+  background: var(--calc-secondary-color);
   border-radius: 0px 0px 10px 10px;
   
+}
+
+.calc-button{
+  margin-top: 15px;
+  width: 40%;
+  padding: 15px 0;
+  font-family: inherit;
+  font-size: 16px;
+  border-radius:5px;
+  align-self: center;
+  color:var(--calc-primary-color);
+
+}
+
+.btn-on{
+  background-color: var(--calc-btn-on-color);
+  border:2px solid var(--calc-primary-color);
+  cursor: pointer;
+  transition: background-color 200ms;
+
+}
+
+.btn-on:hover{
+  background-color: var(--calc-primary-color);
+  color: var(--calc-btn-on-color);
+  border: 2px solid var(--calc-btn-on-color);
+}
+
+.btn-off{
+  background-color: var(--calc-btn-off-color);
+  border:2px solid var(--calc-primary-color);
+  cursor:not-allowed;
+
+
 }
 
 @media only screen and (max-width: 600px) {

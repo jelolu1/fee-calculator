@@ -1,3 +1,7 @@
+:root{
+    --bubble-color: #009de0;
+}
+
 .bubble {
     position: absolute;
     top: 0;
@@ -16,11 +20,11 @@
 }
 
 .bubble .shape-fill {
-    fill: #009de0;
+    fill: var(--bubble-color);
 }
 
 .top-bubble{
     position: relative;
-    background-color: #009de0;
+    background-color: var(--bubble-color);
     height: 250px;
 }
