@@ -2,6 +2,7 @@ import styles from './calcField.module.css';
 
 
 type CalcFieldProps = {
+    id: string,
     title: string,
     inputType: string,
     unit: string | null,
@@ -15,13 +16,17 @@ export const CalcField = (props: CalcFieldProps) => {
     
     const handleDecreaseClick = (e: any) => {
         e.preventDefault()
-
-        props.setValue((prev:number) => prev > 0 ? Number(prev) - 1 : prev)
+        
+        props.id === "cart" && props.setValue((prev:number) => prev >= 1 ? Number(prev) - 1 : 0)
+        props.id === "distance" && props.setValue((prev:number) => prev >= 50 ? Number(prev) - 50 : 0)
+        props.id === "items" && props.setValue((prev:number) => prev >= 1 ? Number(prev) - 1 : 0)
     }
 
     const handleIncreaseClick = (e: any) => {
         e.preventDefault()
-        props.setValue((prev:number) => Number(prev) + 1)
+        props.id === "cart" && props.setValue((prev:number) => Number(prev) + 1)
+        props.id === "distance" && props.setValue((prev:number) => Number(prev) + 50)
+        props.id === "items" && props.setValue((prev:number) => Number(prev) + 1)
     }
     
 
@@ -49,6 +54,7 @@ export const CalcField = (props: CalcFieldProps) => {
                             className={styles['input-quantity']}
                             type={props.inputType}
                             min="0"
+                            step={props.id === "cart" ? 0.5 : 1}
                             onChange={(e) => props.setValue(e.target.value)}
                             value={props.fieldValue}
                         />
