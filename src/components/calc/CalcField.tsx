@@ -1,5 +1,5 @@
+import up from '../../assets/up.svg';
 import styles from './calcField.module.css';
-
 
 type CalcFieldProps = {
     id: string,
