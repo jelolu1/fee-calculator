@@ -19,8 +19,8 @@ type calculateFeeType = {
 // Maybe change header and footer
 // Change date
 // Review units field
-// Implement calculation
 // New display result way
+// Add tests
 // ...
 
 
@@ -59,8 +59,10 @@ function App() {
       Example 3: If the number of items is 10, 3€ surcharge (6 x 50 cents) is added
       Example 4: If the number of items is 13, 5,70€ surcharge is added ((9 * 50 cents) + 1,20€)
     */
-
-
+    if(numberOfItems > 4){
+      if(numberOfItems > 12) fee += 1.2
+      fee += ((numberOfItems - 4) * 0.5)
+    }
 
     /* 
       During the Friday rush (3 - 7 PM UTC), the delivery fee (the total fee including possible surcharges) will be multiplied by 1.2x. However, the fee still cannot be more than the max (15€).
@@ -119,7 +121,7 @@ function App() {
           id="cart"
           title='Cart Value'
           inputType='number'
-          unit='€'
+          unit='Euros'
           setValue={setCartValue}
           fieldValue={cartValue}
         />

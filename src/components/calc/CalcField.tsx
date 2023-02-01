@@ -16,7 +16,6 @@ export const CalcField = (props: CalcFieldProps) => {
     
     const handleDecreaseClick = (e: any) => {
         e.preventDefault()
-        
         props.id === "cart" && props.setValue((prev:number) => prev >= 1 ? Number(prev) - 1 : 0)
         props.id === "distance" && props.setValue((prev:number) => prev >= 50 ? Number(prev) - 50 : 0)
         props.id === "items" && props.setValue((prev:number) => prev >= 1 ? Number(prev) - 1 : 0)
@@ -28,9 +27,13 @@ export const CalcField = (props: CalcFieldProps) => {
         props.id === "distance" && props.setValue((prev:number) => Number(prev) + 50)
         props.id === "items" && props.setValue((prev:number) => Number(prev) + 1)
     }
+
+    const changeInputHandler = (e: any) => {
+        if(props.id === "cart") { props.setValue(Math.floor(e.target.value * 100) / 100) }
+        else if(props.id === "distance" || props.id === "items") { props.setValue(Math.floor(e.target.value)) }
+        else { props.setValue(e.target.value) }
+    }
     
-
-
     return (
         <div className={`${styles['calc-field']} ${props.inputType === "datetime-local" ? styles['calc-field-date'] : ""}`}>
 
@@ -55,7 +58,7 @@ export const CalcField = (props: CalcFieldProps) => {
                             type={props.inputType}
                             min="0"
                             step={props.id === "cart" ? 0.5 : 1}
-                            onChange={(e) => props.setValue(e.target.value)}
+                            onChange={changeInputHandler}
                             value={props.fieldValue}
                         />
                         <button
@@ -84,7 +87,7 @@ export const CalcField = (props: CalcFieldProps) => {
                     <input
                         className={`${styles['input-date']}`}
                         type={props.inputType}
-                        onChange={(e) => props.setValue(e.target.value)}     
+                        onChange={changeInputHandler}     
                         value={props.fieldValue}
 
                     />

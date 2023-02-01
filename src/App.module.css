@@ -41,12 +41,10 @@
 
 }
 
-
-
 .calc-button{
   margin-top: 15px;
-  width: 40%;
-  padding: 15px 0;
+  width: auto;
+  padding: 15px 15px;
   font-family: inherit;
   font-size: 16px;
   border-radius:5px;
@@ -77,10 +75,34 @@
 
 }
 
+
 @media only screen and (max-width: 600px) {
   .calc-container{
-    width: 95vw;
+    width: 90vw;
   }
+}
+
+@media only screen and (max-width: 450px) {
+  .calc-container{
+    font-size: 1em;
+    text-align: center;
+  }
+
+  .calc-form{
+    padding: 25px 50px;
+    gap: 15px;
+  }
+
+  .calc-header{
+    margin-bottom: -150px;
+  }
+  
+
+  .calc-footer{
+    margin-top: -150px;
+  
+  }
+  
 
 }
 

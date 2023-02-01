@@ -103,3 +103,36 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
+
+
+@media only screen and (max-width: 450px) {
+    .btn-quantity{
+        padding: 0px 10px;
+
+    }
+
+    .span-icon{
+        font-size: 0.95em;
+
+    }
+
+    .number-field{
+        width: 0.5em;
+        gap: 5px;
+        font-size:0.9em;
+    }
+    
+    .number-container{
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .input-quantity{
+        width: 50px;
+
+        
+    }
+    
+  
+  }
