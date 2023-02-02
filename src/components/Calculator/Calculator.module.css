@@ -1,0 +1,128 @@
+.calc-container{
+  background: var(--white-color);
+  border-radius: 20px;
+  max-width: var(--calculator-max-width);
+  width: 90vw;
+}
+
+.calc-form{
+  padding: var(--calculator-form-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--calculator-gap);
+}
+
+.spacer {
+  aspect-ratio: 900/600;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 1;
+}
+
+.calc-header{
+  border-radius: 15px;
+  margin-bottom: -200px;
+  background-image: url("../../assets/header.svg");
+  display: flex;
+  justify-content: end;
+}
+
+.btn-info{
+  height: 42px;
+  width: 42px;
+  margin: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  border:none;
+  text-align: center;
+  background-color: var(--white-color);
+  color: var(--blue-color);
+  border:2px solid var(--blue-color);
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.btn-info:hover{
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  border: 2px solid var(--blue-color);
+}
+
+.calc-footer{
+  border-radius: 15px;
+  margin-top: -200px;
+  background-image: url("../../assets/footer.svg");
+
+}
+
+.calc-btn{
+  margin-top: 15px;
+  width: 100%;
+  padding: var(--calc-btn-padding);
+  font-family: inherit;
+  font-size: var(--calc-btn-font-size);
+  border-radius:5px;
+  align-self: center;
+  color:var(--white-color);
+
+}
+
+.btn-on{
+  background-color: var(--blue-color);
+  border:2px solid var(--white-color);
+  cursor: pointer;
+  transition: background-color 200ms;
+
+}
+
+.btn-on:hover{
+  background-color: var(--white-color);
+  color: var(--blue-color);
+  border: 2px solid var(--blue-color);
+}
+
+.btn-off{
+  background-color: var(--gray-color);
+  border:2px solid var(--white-color);
+  cursor:not-allowed;
+
+
+}
+
+/* 
+@media only screen and (max-width: 600px) {
+  .calc-container{
+    width: 90vw;
+
+  }
+
+  .calc-form{
+    padding: 25px 25px;
+    gap: 15px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+
+  .calc-container{
+    font-size:0.9rem;
+  }
+
+  .calc-form{
+    gap: 15px;
+  }
+
+}
+
+@media only screen and (max-width: 350px) {
+
+  .calc-form{
+    padding: 45px 15px;
+
+  }
+
+}
+   */
+  

@@ -1,6 +1,9 @@
 :root{
-    --bubble-color: #009de0;
+    --bubble-color: rgb(0, 157, 224);
 }
+
+@import '../../constants.css';
+
 
 .bubble {
     position: absolute;

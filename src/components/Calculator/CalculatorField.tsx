@@ -1,17 +1,16 @@
-import up from '../../assets/up.svg';
-import styles from './calcField.module.css';
+import { dateObject } from './Calculator';
+import styles from './CalculatorField.module.css';
 
-type CalcFieldProps = {
+type CalculatorFieldProps = {
     id: string,
     title: string,
     inputType: string,
     unit: string | null,
     setValue: Function        
-    fieldValue: number | string
+    fieldValue: number | dateObject
 }
 
-
-export const CalcField = (props: CalcFieldProps) => {
+export const CalculatorField = (props: CalculatorFieldProps) => {
 
     
     const handleDecreaseClick = (e: any) => {
@@ -29,18 +28,39 @@ export const CalcField = (props: CalcFieldProps) => {
     }
 
     const changeInputHandler = (e: any) => {
-        if(props.id === "cart") { props.setValue(Math.floor(e.target.value * 100) / 100) }
-        else if(props.id === "distance" || props.id === "items") { props.setValue(Math.floor(e.target.value)) }
-        else { props.setValue(e.target.value) }
-    }
-    
-    return (
-        <div className={`${styles['calc-field']} ${props.inputType === "datetime-local" ? styles['calc-field-date'] : ""}`}>
 
-            {props.inputType==="number" &&
+        if(props.id === "cart") { 
+            props.setValue(Math.floor(e.target.value * 100) / 100) 
+        }
+        else if(props.id === "distance" || props.id === "items") { 
+            props.setValue(Math.floor(e.target.value)) 
+        }
+        else { 
+            e.target.type === "time" && 
+                props.setValue((prev: dateObject) => (
+                    {date: prev.date, time: e.target.value}
+                ))
+
+            e.target.type === "date" && 
+                props.setValue((prev: dateObject) => (
+                    {date: e.target.value, time: prev.time}
+                ))
+        }
+
+    }
+
+    let fieldValue;
+
+    if(props.inputType==="number") fieldValue = props.fieldValue as Number
+    else if(props.inputType==="date") fieldValue = props.fieldValue as dateObject
+     
+    return (
+        <>
+
+            {typeof(props.fieldValue) === "number" && 
             
                 <div className={styles["number-field"]}>
-                    <p>{props.title}</p>
+                    <p className={styles["p-title"]}>{props.title}</p>
                         
                     <div className={styles['number-container']}>
                         <button
@@ -60,6 +80,8 @@ export const CalcField = (props: CalcFieldProps) => {
                             step={props.id === "cart" ? 0.5 : 1}
                             onChange={changeInputHandler}
                             value={props.fieldValue}
+                            required
+
                         />
                         <button
                             className={styles['btn-quantity']}
@@ -76,27 +98,34 @@ export const CalcField = (props: CalcFieldProps) => {
                         
 
                     </div>
-                    <p>{props.unit}</p>
+                    <p className={styles["p-unit"]}>{props.unit}</p>
                 </div>
                     
             }
 
-            {props.inputType==="datetime-local" &&
+            {typeof(props.fieldValue) !== "number" &&
                 <div className={styles["date-field"]}>
                     <p>{props.title}</p>
                     <input
                         className={`${styles['input-date']}`}
-                        type={props.inputType}
+                        type={"date"}
                         onChange={changeInputHandler}     
-                        value={props.fieldValue}
+                        value={props.fieldValue.date}
+                        required
 
                     />
-                </div>
-                    
-                    
+                    <input
+                        className={`${styles['input-date']}`}
+                        type={"time"}
+                        onChange={changeInputHandler}     
+                        value={props.fieldValue.time}
+                        required
+
+                    />
+                </div>     
             }
 
-        </div>
+        </>
     )
 }
 

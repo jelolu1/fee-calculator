@@ -1,0 +1,74 @@
+:root{
+    --calculator-max-width: 650px;
+    --calculator-max-height:1000px;
+    --calculator-gap: 25px;
+    --calculator-form-padding: 0 50px;
+    --white-color: rgb(240, 248, 255); 
+    --blue-color:rgb(0, 157, 224);
+    --red-color:rgba(255, 38, 0, 1);
+    --gray-color:rgb(134, 134, 134);
+    --light-gray-color: rgba(240, 248, 255, 0.30);
+    --global-text-align: start;
+    --global-font-size: 20px;
+    --input-quantity-width: 75px;
+    --quantity-btn-size: 50px;
+    --close-btn-font-size: 16px;
+    --modal-fee-font-size: 32px;
+    --calc-btn-font-size: 1.3rem;
+    --calc-btn-padding: 20px;
+    
+}
+
+@media only screen and (max-width: 768px) {
+
+    :root{
+        --global-text-align: center;
+        --calculator-form-padding: 10px 40px;
+
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    :root{
+        --calculator-gap: auto;
+        --global-font-size:18px;
+        --input-quantity-width: 60px;
+        --quantity-btn-size: 45px;
+        --calculator-form-padding: 50px 40px;
+
+        --calc-btn-padding: 10px;
+
+
+        
+    }
+}
+
+
+
+@media only screen and (max-width: 450px) {
+    :root{
+        --calculator-form-padding: 75px 25px;
+
+        --global-font-size:16px;
+        --quantity-btn-size: 40px;
+        --input-quantity-width: 45px;
+        --btn-quantity-padding: 0;
+        --quantity-btn-size: 35px;
+        --calc-btn-font-size: 1.1rem;
+
+
+    }
+
+
+}
+
+@media only screen and (max-width: 320px) {
+    :root{
+        ---calculator-form-padding: 100px 10px;
+        --global-font-size:13px;
+
+    }
+
+
+}
