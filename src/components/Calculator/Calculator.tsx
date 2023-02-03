@@ -3,23 +3,31 @@ import styles from "./Calculator.module.css";
 import { CalculatorField } from "./CalculatorField";
 
 type CalculatorProps = {
-  setShowInfoModal: Function,
-  setShowFeeModal: Function,
-  setShowWarningModal: Function,
+  setShowInstructionsModal: Function,
+  setShowResultModal: Function,
   setCalculatedFee: Function,
 }
 
-export type dateObject = {
-  date: string, 
+export interface dateObject {
+  day: string, 
   time: string
 }
 
 
-export const Calculator = ({ setShowInfoModal, setShowFeeModal, setShowWarningModal,  setCalculatedFee  }: CalculatorProps) => {
-  const [cartValue, setCartValue] = useState<number>(0);
-  const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
-  const [numberOfItems, setNumberOfItems] = useState<number>(0);
-  const [orderTime, setOrderTime] = useState<dateObject>({ date: "", time:"" });
+
+export interface fieldValueObject {
+  value: dateObject | number, 
+  modified: boolean
+}
+
+
+
+
+export const Calculator = ({ setShowInstructionsModal, setShowResultModal,  setCalculatedFee  }: CalculatorProps) => {
+  const [cartValue, setCartValue] = useState<fieldValueObject>({value: 0, modified: false});
+  const [deliveryDistance, setDeliveryDistance] = useState<fieldValueObject>({value: 0, modified: false});
+  const [numberOfItems, setNumberOfItems] = useState<fieldValueObject>({value: 0, modified: false});
+  const [orderDate, setOrderTime] = useState<fieldValueObject>({value: { day: "", time:"" }, modified: false });
   const [btnOn, setBtnOn] = useState<boolean>(false);
 
   const calculatorFields = [
@@ -53,97 +61,74 @@ export const Calculator = ({ setShowInfoModal, setShowFeeModal, setShowWarningMo
       inputType: "date",
       unit: null,
       setValue: setOrderTime,
-      fieldValue: orderTime,
+      fieldValue: orderDate,
     },
   ]
   
-  const calculateFee = (cartValue: number, deliveryDistance: number, numberOfItems: number, orderTime: dateObject) =>{
+  const calculateFee = (cValue: number, dDistance: number, nItems: number, oDate: dateObject) =>{
     let fee = 0
 
-    /* 
-      If the cart value is less than 10€, a small order surcharge is added to the delivery price. The surcharge is the difference between the cart value and 10€. For example if the cart value is 8.90€, the surcharge will be 1.10€. 
-    */
-    if(cartValue < 10) { fee += 10 - cartValue }
 
-    /* 
-      A delivery fee for the first 1000 meters (=1km) is 2€. If the delivery distance is longer than that, 1€ is added for every additional 500 meters that the courier needs to travel before reaching the destination. Even if the distance would be shorter than 500 meters, the minimum fee is always 1€.
-      Example 1: If the delivery distance is 1499 meters, the delivery fee is: 2€ base fee + 1€ for the additional 500 m => 3€
-      Example 2: If the delivery distance is 1500 meters, the delivery fee is: 2€ base fee + 1€ for the additional 500 m => 3€
-      Example 3: If the delivery distance is 1501 meters, the delivery fee is: 2€ base fee + 1€ for the first 500 m + 1€ for the second 500 m => 4€
-    */
-    if(deliveryDistance <= 1000) { fee += 2 }
-    else { fee += (Math.ceil(deliveryDistance / 500)) }
+    if(cValue < 10) { fee += 10 - cValue }
 
-    /* 
-      If the number of items is five or more, an additional 50 cent surcharge is added for each item above and including the fifth item. An extra "bulk" fee applies for more than 12 items of 1,20€
-      Example 1: If the number of items is 4, no extra surcharge
-      Example 2: If the number of items is 5, 50 cents surcharge is added
-      Example 3: If the number of items is 10, 3€ surcharge (6 x 50 cents) is added
-      Example 4: If the number of items is 13, 5,70€ surcharge is added ((9 * 50 cents) + 1,20€)
-    */
-    if(numberOfItems > 4){
-      if(numberOfItems > 12) fee += 1.2
-      fee += ((numberOfItems - 4) * 0.5)
+
+    if(dDistance <= 1000) { fee += 2 }
+    else { fee += (Math.ceil(dDistance / 500)) }
+
+
+    if(nItems > 4){
+      if(nItems > 12) fee += 1.2
+      fee += ((nItems - 4) * 0.5)
     }
 
-    /* 
-      During the Friday rush (3 - 7 PM UTC), the delivery fee (the total fee including possible surcharges) will be multiplied by 1.2x. However, the fee still cannot be more than the max (15€).
-    */
-    const date = new Date(orderTime.date + orderTime.time)
+  
+    const date = new Date(oDate.day + oDate.time)
     const weekDay = date.getUTCDay()
     const hour = date.getHours()
     if(weekDay === 5 && hour >= 15 && hour <= 19)  { fee *= 1.2 }
 
-    /* 
-      The delivery fee can never be more than 15€, including possible surcharges.
-    */
+ 
     if(fee > 15) fee = 15;
 
-    /* 
-      The delivery is free (0€) when the cart value is equal or more than 100€.
-    */
-    if(cartValue >= 100) fee = 0;
 
-    setShowFeeModal(true)
+    if(cValue >= 100) fee = 0;
+
+    setShowResultModal(true)
     setCalculatedFee(fee)
   }
 
   const submitClickHandler = (e: any) => {
     e.preventDefault();
 
-    // Indicate user that needs to fill fields
-    if (!btnOn) {
-      setShowWarningModal(true)
-      return
-    }
+    if (!btnOn) return
+    if(typeof(cartValue.value) !== "number" || typeof(deliveryDistance.value) !== "number" || typeof(numberOfItems.value) !== "number" || typeof(orderDate.value) === "number") return
 
-    // None of the fields should be undefined or 0 (Lack of sense)
-    if(cartValue && deliveryDistance && numberOfItems && orderTime.date !== "" && orderTime.time !== ""){ 
-      calculateFee(cartValue, deliveryDistance, numberOfItems, orderTime)
-    }
+    calculateFee(cartValue.value, deliveryDistance.value, numberOfItems.value, orderDate.value)
   }
 
   useEffect(() => {
+
+    if(typeof(cartValue.value) !== "number" || typeof(deliveryDistance.value) !== "number" || typeof(numberOfItems.value) !== "number" || typeof(orderDate.value) === "number") return
+
     if(
-      cartValue > 0 &&
-      deliveryDistance > 0 &&
-      numberOfItems > 0 &&
-      orderTime.date !== "" &&
-      orderTime.time !== ""
+      cartValue.value > 0 &&
+      deliveryDistance.value > 0 &&
+      numberOfItems.value > 0 &&
+      orderDate.value.day !== "" &&
+      orderDate.value.time !== ""
     ) {
       setBtnOn(true)
     }
     else {setBtnOn(false)}
 
-
-  }, [cartValue, deliveryDistance, numberOfItems, orderTime])
+  }, [cartValue, deliveryDistance, numberOfItems, orderDate])
 
 
   return (
     <section className={styles["calc-container"]}>
       <div className={`${styles["spacer"]} ${ styles["calc-header"]}`}>
         <button
-          onClick={() => setShowInfoModal(true)}
+          onClick={() => setShowInstructionsModal(true)}
           className={styles["btn-info"]}
         >
         i

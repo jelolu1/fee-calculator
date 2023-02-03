@@ -1,0 +1,8 @@
+.span-fee{
+    font-size: var(--modal-fee-font-size);
+    color: var(--white-color);
+    border: 1px solid var(--blue-color);
+    background-color: var(--blue-color);
+    border-radius: 5px;
+    padding: 12px 24px;
+}

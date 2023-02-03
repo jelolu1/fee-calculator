@@ -1,0 +1,12 @@
+.instructions-list{
+    list-style-type: none;
+    padding: 12px 0px;
+}   
+
+.instructions-list li span{
+    border-bottom: 2px solid var(--blue-color);
+}
+
+.instructions-list li p{
+    font-weight: 400;
+}

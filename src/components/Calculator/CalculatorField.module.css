@@ -14,7 +14,7 @@
     gap: 25px;
 }
 
-.number-field .p-title{
+.number-field .div-title{
     width: 40%;
 }
 
@@ -67,7 +67,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 
@@ -79,7 +78,6 @@
 
 .date-field p{
     width: 40%;
-
 }
 
 .input-date{
@@ -98,7 +96,6 @@
     outline: none;
 }
 
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -108,78 +105,3 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
-
-/* @media only screen and (max-width: 600px) {
-    .btn-quantity{
-        height: 40px;
-        width: 40px;
-        padding: 0px 10px;
-
-    }
-
-
-    .number-field .p-title{
-        width: 20%;
-    }
-    
-    .number-field .p-unit{
-        width: 20%;
-    }
-}
-
-@media only screen and (max-width: 450px) {
-    
-    .number-container{
-        gap: 0px;
-    }
-
-    .input-quantity{
-        width: 45px; 
-    }
-
-    .number-field .p-title{
-        width: 25%;
-    }
-    
-    .number-field .p-unit{
-        width: 20%;
-    }
-
-    .input-date{
-        font-size: 14px;
-
-    }
-  }
-
-  @media only screen and (max-width: 320px) {
-
-    .btn-quantity{
-        height: 35px;
-        width: 35px;
-    }
-
-    .number-container{
-        display: flex;
-        gap: 5px;
-    }
-
-
-    .input-quantity{
-        width: 35px; 
-    }
-
-    .number-field .p-title{
-        width: 25%;
-    }
-    
-    .number-field .p-unit{
-        width: 20%;
-    }
-
-    .input-date{
-        font-size: 14px;
-
-    }
-
-  
-  } */
