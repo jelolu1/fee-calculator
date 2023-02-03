@@ -7,12 +7,12 @@ import { Modal } from './components/UI/Modal';
 // https://github.com/woltap33p/engineering-summer-intern-2023
 
 // TODO
-// Add instructions
 // Maybe change background
 // Maybe change header and footer
-// Review units field
-// New display result way
 // Add tests
+// Add translation -> Change enter day format
+// Add fee disclosure
+// 
 // ...
 
 
@@ -20,6 +20,7 @@ function App() {
 
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const [showFeeModal, setShowFeeModal] = useState<boolean>(false);
+  const [showWarningModal, setShowWarningModal] = useState<boolean>(false);
   const [calculatedFee, setCalculatedFee] = useState<number>(0);
 
   return (
@@ -27,6 +28,7 @@ function App() {
     <Calculator 
       setShowInfoModal={setShowInfoModal} 
       setShowFeeModal={setShowFeeModal}
+      setShowWarningModal={setShowWarningModal}
       setCalculatedFee={setCalculatedFee}
     />
     {
@@ -69,6 +71,36 @@ function App() {
           <span className={styles["span-fee"]}>
             {calculatedFee.toFixed(2)} €
           </span>
+        </>
+
+      </Modal>
+    }
+    {
+      showWarningModal && 
+      <Modal setShowModal={setShowWarningModal}>
+        <>
+            <h2>Please fill all the fields:</h2>
+            <ul  className={styles["warning-list"]}>
+              <li>
+                <span>Cart Value</span>
+                <p>Higher than 0.</p></li>
+              <li>
+                <span>Delivery Distance</span> 
+                <p>Higher than 0.</p>
+              </li>
+              <li>
+                <span>Number of Items</span>
+                <p>Higher than 0.</p>
+              </li>
+              <li>
+                <span>Order Date</span>
+                <p>Select day, month and year</p>
+              </li>
+              <li>
+                <span>Order Time</span>
+                <p>Select hour, minutes and PM/AM</p>
+              </li>
+            </ul>
         </>
 
       </Modal>

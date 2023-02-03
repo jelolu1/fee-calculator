@@ -83,6 +83,7 @@ export const CalculatorField = (props: CalculatorFieldProps) => {
                             required
 
                         />
+
                         <button
                             className={styles['btn-quantity']}
                             onClick={handleIncreaseClick}

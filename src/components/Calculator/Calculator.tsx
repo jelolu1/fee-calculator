@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import styles from './Calculator.module.css';
-import { CalculatorField } from './CalculatorField';
+import { useEffect, useState } from "react";
+import styles from "./Calculator.module.css";
+import { CalculatorField } from "./CalculatorField";
 
 type CalculatorProps = {
   setShowInfoModal: Function,
   setShowFeeModal: Function,
+  setShowWarningModal: Function,
   setCalculatedFee: Function,
 }
 
@@ -13,7 +14,8 @@ export type dateObject = {
   time: string
 }
 
-export const Calculator = ({ setShowFeeModal, setCalculatedFee, setShowInfoModal }: CalculatorProps) => {
+
+export const Calculator = ({ setShowInfoModal, setShowFeeModal, setShowWarningModal,  setCalculatedFee  }: CalculatorProps) => {
   const [cartValue, setCartValue] = useState<number>(0);
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
   const [numberOfItems, setNumberOfItems] = useState<number>(0);
@@ -23,32 +25,32 @@ export const Calculator = ({ setShowFeeModal, setCalculatedFee, setShowInfoModal
   const calculatorFields = [
     {
       id: "cart",
-      title: 'Cart Value',
-      inputType: 'number',
-      unit: '€',
+      title: "Cart Value",
+      inputType: "number",
+      unit: "€",
       setValue: setCartValue,
       fieldValue: cartValue,
     },
     {
       id: "distance",
-      title: 'Delivery Distance',
-      inputType: 'number',
-      unit: 'm',
+      title: "Delivery Distance",
+      inputType: "number",
+      unit: "m",
       setValue: setDeliveryDistance,
       fieldValue: deliveryDistance,
     },
     {
       id: "items",
-      title: 'Amount of Items',
-      inputType: 'number',
+      title: "Amount of Items",
+      inputType: "number",
       unit: null,
       setValue: setNumberOfItems,
       fieldValue: numberOfItems,
     },
     {
       id: "date",
-      title: 'Time',
-      inputType: 'date',
+      title: "Time",
+      inputType: "date",
       unit: null,
       setValue: setOrderTime,
       fieldValue: orderTime,
@@ -110,7 +112,10 @@ export const Calculator = ({ setShowFeeModal, setCalculatedFee, setShowInfoModal
     e.preventDefault();
 
     // Indicate user that needs to fill fields
-    if (!btnOn) return;
+    if (!btnOn) {
+      setShowWarningModal(true)
+      return
+    }
 
     // None of the fields should be undefined or 0 (Lack of sense)
     if(cartValue && deliveryDistance && numberOfItems && orderTime.date !== "" && orderTime.time !== ""){ 
@@ -125,27 +130,26 @@ export const Calculator = ({ setShowFeeModal, setCalculatedFee, setShowInfoModal
       numberOfItems > 0 &&
       orderTime.date !== "" &&
       orderTime.time !== ""
-    ) setBtnOn(true)
-    else setBtnOn(false)
+    ) {
+      setBtnOn(true)
+    }
+    else {setBtnOn(false)}
 
 
   }, [cartValue, deliveryDistance, numberOfItems, orderTime])
 
 
   return (
-
-
-
-    <section className={styles['calc-container']}>
+    <section className={styles["calc-container"]}>
       <div className={`${styles["spacer"]} ${ styles["calc-header"]}`}>
         <button
           onClick={() => setShowInfoModal(true)}
-          className={styles['btn-info']}
+          className={styles["btn-info"]}
         >
         i
         </button>
       </div>
-      <form className={styles['calc-form']}>
+      <form className={styles["calc-form"]}>
         {calculatorFields.map(field => (
           <CalculatorField
             key={field.id}
@@ -160,7 +164,7 @@ export const Calculator = ({ setShowFeeModal, setCalculatedFee, setShowInfoModal
         }
         <button
           onClick={submitClickHandler} 
-          className={`${styles['calc-btn']} ${btnOn ? styles['btn-on']: styles['btn-off']}`}
+          className={`${styles["calc-btn"]} ${btnOn ? styles["btn-on"]: styles["btn-off"]}`}
         >
           CALCULATE FEE
         </button>
@@ -168,10 +172,9 @@ export const Calculator = ({ setShowFeeModal, setCalculatedFee, setShowInfoModal
       </form>
       
       <div className={`${styles["spacer"]} ${ styles["calc-footer"]}`}/>
+
+      
     </section>
-
-
-
     
   )
 }

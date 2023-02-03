@@ -39,7 +39,6 @@
     border:none;
     border-bottom: 1px solid var(--blue-color);
     background-color: transparent;
-    
 }
 
 .input-quantity:focus{

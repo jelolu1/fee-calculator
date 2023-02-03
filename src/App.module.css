@@ -18,5 +18,27 @@
     border: 1px solid var(--blue-color);
     background-color: var(--blue-color);
     border-radius: 5px;
-    padding: 12px;
+    padding: 12px 24px;
 }
+
+.warning-list{
+    list-style-type: none;
+    padding: 12px 0px;
+}
+
+.warning-list li {
+    margin-bottom: 12px;
+}
+
+
+.warning-list li span{
+    border-bottom: 2px solid var(--warning-color);
+}
+
+.warning-list li p{
+    font-weight: 400;
+}
+
+
+  
+  
