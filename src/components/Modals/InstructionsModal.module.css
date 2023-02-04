@@ -10,3 +10,7 @@
 .instructions-list li p{
     font-weight: 400;
 }
+
+.instructions-title{
+    margin-bottom: 0;
+}

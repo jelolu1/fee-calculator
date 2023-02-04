@@ -10,7 +10,6 @@ html{
   height:100%;
   width: 100%;
   font-size: var(--global-font-size);
-  text-align: var(--global-text-align);
 }
 
 body{
