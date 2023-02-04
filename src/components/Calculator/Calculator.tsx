@@ -73,7 +73,6 @@ export const Calculator = ({
 		nItems: number,
 		oDate: dateObject
 	) => {
-		let fee = 0;
 		const {
 			minCartValue,
 			minDistance,
@@ -91,29 +90,51 @@ export const Calculator = ({
 			freeDeliveryMinimum,
 		} = calculatorFeeConstants;
 
+		const fee = {
+			minimumFee: 0,
+			distanceFee: 0,
+			itemsFee: 0,
+			rushHourFee: 0,
+			exceedingFeeReduction: 0,
+			totalFee: 0,
+			totalFeeReduction: 0,
+		};
+
 		if (cValue < minCartValue) {
-			fee += minCartValue - cValue;
+			fee.minimumFee = minCartValue - cValue;
 		}
 
-		dDistance <= minDistance
-			? (fee += minDistanceFee)
-			: (fee += Math.ceil(dDistance / extraDistanceInterval));
+		fee.distanceFee =
+			dDistance <= minDistance
+				? minDistanceFee
+				: Math.ceil(dDistance / extraDistanceInterval);
 
 		if (nItems > nonChargedItems) {
-			fee += (nItems - nonChargedItems) * itemFee;
-			if (nItems > limitBulkFee) fee += bulkFee;
+			fee.itemsFee = (nItems - nonChargedItems) * itemFee;
+			if (nItems > limitBulkFee) fee.itemsFee += bulkFee;
 		}
+
+		fee.totalFee = fee.minimumFee + fee.distanceFee + fee.itemsFee;
 
 		const date = new Date(oDate.day + oDate.time);
 		const weekDay = date.getUTCDay();
 		const hour = date.getHours();
+
 		if (weekDay === rushDay && hour >= startRushHour && hour <= endRushHour) {
-			fee *= rushHourExtra;
+			fee.rushHourFee = fee.totalFee * rushHourExtra;
 		}
 
-		if (fee > maxFee) fee = maxFee;
+		fee.totalFee += fee.rushHourFee;
 
-		if (cValue >= freeDeliveryMinimum) fee = 0;
+		if (fee.totalFee > maxFee) {
+			fee.exceedingFeeReduction = maxFee - fee.totalFee;
+			fee.totalFee = maxFee;
+		}
+
+		if (cValue >= freeDeliveryMinimum) {
+			fee.totalFeeReduction = -fee.totalFee;
+			fee.totalFee = 0;
+		}
 
 		setShowResultModal(true);
 		setCalculatedFee(fee);

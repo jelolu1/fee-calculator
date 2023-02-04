@@ -10,7 +10,15 @@ function App() {
 	const [showInstructionsModal, setShowInstructionsModal] =
 		useState<boolean>(false);
 	const [showResultModal, setShowResultModal] = useState<boolean>(false);
-	const [calculatedFee, setCalculatedFee] = useState<number>(0);
+	const [calculatedFee, setCalculatedFee] = useState({
+		minimumFee: 0,
+		distanceFee: 0,
+		itemsFee: 0,
+		rushHourFee: 0,
+		exceedingFeeReduction: 0,
+		totalFeeReduction: 0,
+		totalFee: 0,
+	});
 	const { t, i18n } = useTranslation();
 
 	return (

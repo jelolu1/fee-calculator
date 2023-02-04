@@ -6,3 +6,88 @@
     border-radius: 5px;
     padding: 12px 24px;
 }
+
+.display-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border:none;
+    font-size: 1rem;
+    cursor:pointer;
+    margin-top: 18px;
+}
+
+.not-rotated{
+    rotate: 0deg;
+    transition: rotate 400ms ;
+}
+
+.rotated{
+    rotate: 180deg;
+    transition: rotate 400ms ;
+}
+
+.closed{
+    height: 0;
+    opacity: 0;
+}
+
+.open{
+    height: auto;
+    opacity: 1;
+    transition: all 500ms ease;
+}
+
+.display-list{
+    list-style-type: none;
+    padding: 12px 0px;
+}
+
+.display-list li{
+    margin-bottom: 32px;
+}
+
+.display-list li .div-display-element{
+    display: flex;
+    flex-direction: var(--display-element-flex-direction);
+    align-items: var(--display-element-align-items);
+    gap: 18px;
+}
+
+
+
+.display-list li span{
+    border-bottom: 2px solid var(--blue-color);
+}
+
+.display-list li .span-result{
+    border-bottom: none;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    padding: 8px 4px;
+    border: 1px solid var(--blue-color);
+    border-radius: 10px;
+}
+
+.display-list li .div-fee-reduction{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    margin-left: 18px;
+
+}
+
+.display-list li .div-fee-reduction p{
+    font-weight: 400;
+    margin-bottom: 0;
+
+
+}
+
+.display-list li .div-fee-reduction .fee-reduction{
+    color: var(--blue-color);
+    font-weight: 600;
+}

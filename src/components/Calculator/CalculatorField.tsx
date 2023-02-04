@@ -73,14 +73,14 @@ export const CalculatorField = ({
 		const inputValue = (e.target as HTMLInputElement).value;
 		const dateType = (e.target as HTMLInputElement).type;
 
-		if (typeof inputValue === 'number') {
+		if (inputType === 'number') {
 			id === 'cart'
 				? setValue({
-						value: Math.floor(inputValue * 100) / 100,
+						value: Math.floor(Number(inputValue) * 100) / 100,
 						modified: true,
 				  })
 				: setValue({
-						value: Math.floor(inputValue),
+						value: Math.floor(Number(inputValue)),
 						modified: true,
 				  });
 		} else {
@@ -104,7 +104,7 @@ export const CalculatorField = ({
 
 	return (
 		<>
-			{typeof fieldValue.value === 'number' && (
+			{inputType === 'number' && typeof fieldValue.value === 'number' && (
 				<div className={styles['number-field']}>
 					<div className={styles['div-title']}>
 						<p>{title}</p>
@@ -119,14 +119,7 @@ export const CalculatorField = ({
 							onClick={handleDecreaseClick}
 						>
 							<span className={styles['span-icon']}>
-								<svg
-									viewBox="0 0 16 16"
-									width="1em"
-									height="1em"
-									role="presentation"
-									focusable="false"
-									aria-hidden="true"
-								>
+								<svg viewBox="0 0 16 16" width="1em" height="1em">
 									<path d="M14.125 7.344H1.875v1.312h12.25V7.344z" />
 								</svg>
 							</span>
@@ -137,7 +130,7 @@ export const CalculatorField = ({
 							min="0"
 							step={id === 'cart' ? 0.5 : 1}
 							onChange={changeInputHandler}
-							value={fieldValue.value}
+							value={fieldValue.value as number}
 							required
 						/>
 						<button
@@ -145,14 +138,7 @@ export const CalculatorField = ({
 							onClick={handleIncreaseClick}
 						>
 							<span className={styles['span-icon']}>
-								<svg
-									viewBox="0 0 16 16"
-									width="1em"
-									height="1em"
-									role="presentation"
-									focusable="false"
-									aria-hidden="true"
-								>
+								<svg viewBox="0 0 16 16" width="1em" height="1em">
 									<path d="M14.125 7.344H8.656V1.875H7.344v5.469H1.875v1.312h5.469v5.469h1.312V8.656h5.469V7.344z" />
 								</svg>
 							</span>
@@ -162,7 +148,7 @@ export const CalculatorField = ({
 				</div>
 			)}
 
-			{typeof fieldValue.value !== 'number' && (
+			{inputType === 'date' && typeof fieldValue.value !== 'number' && (
 				<div className={styles['date-field']}>
 					<div className={styles['div-title']}>
 						<p>{title}</p>

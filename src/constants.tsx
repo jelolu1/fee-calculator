@@ -12,7 +12,7 @@ export namespace calculatorFeeConstants {
 	export const rushDay: number = 5;
 	export const startRushHour: number = 15;
 	export const endRushHour: number = 19;
-	export const rushHourExtra: number = 1.2;
+	export const rushHourExtra: number = 0.2;
 	export const maxFee: number = 15;
 	export const freeDeliveryMinimum: number = 100;
 }
@@ -27,6 +27,16 @@ export namespace calculatorFeeConstants {
 }
 
 /* Custom Interfaces */
+
+interface calculatedFeeInterface {
+	minimumFee: number;
+	distanceFee: number;
+	itemsFee: number;
+	rushHourFee: number;
+	exceedingFeeReduction: number;
+	totalFeeReduction: number;
+	totalFee: number;
+}
 
 interface dateObjectInterface {
 	day: string;
@@ -77,7 +87,7 @@ export interface ModalProps {
 
 export interface propsResultModal {
 	setShowResultModal: Function;
-	calculatedFee: number;
+	calculatedFee: calculatedFeeInterface;
 	t: Function;
 }
 

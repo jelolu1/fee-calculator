@@ -20,11 +20,15 @@
     --modal-fee-font-size: 32px;
     --calc-btn-font-size: 1.3rem;
     --calc-btn-padding: 20px;
+
+    --display-element-flex-direction: row;
+    --display-element-align-items: center;
 }
 
 @media only screen and (max-width: 768px) {
     :root{
         --calculator-form-padding: 10px 40px;
+        --display-element-flex-direction: column;
     }
 }
 
@@ -39,7 +43,6 @@
         --warning-modal-margin-top: 175px;
         --warning-modal-margin-bottom: 10px;
         --quantity-gap: 10px;
-
     }
 }
 
