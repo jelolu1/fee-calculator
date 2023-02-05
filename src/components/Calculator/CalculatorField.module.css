@@ -17,7 +17,7 @@
 	font-size: 0.75rem;
 	font-weight: 400;
 	position: absolute;
-	bottom: -10px;
+	bottom: -30px;
 }
 
 .p-unit {
@@ -30,7 +30,7 @@
 }
 
 .date-field .div-title span {
-	bottom: -25px;
+	bottom: -45px;
 }
 
 .number-container {
@@ -45,22 +45,20 @@
 	width: var(--input-quantity-width);
 	height: 0px;
 	padding: 23px 0px;
-	text-align: center;
-	font-size: inherit;
+	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid var(--blue-color);
-	background-color: transparent;
+	text-align: center;
+	font-size: inherit;
 }
 
 .input-date {
 	width: 60%;
-	max-height: 26px;
-	padding: 10px 10px;
 	padding: 15px 15px;
-	font-size: 0.95rem;
-	border: none;
 	background-color: transparent;
+	border: none;
 	border-bottom: 1px solid var(--blue-color);
+	font-size: 0.95rem;
 	cursor: pointer;
 }
 
@@ -76,5 +74,5 @@ input::-webkit-inner-spin-button {
 }
 
 input[type='number'] {
-	-moz-appearance: textfield; /* Firefox */
+	-moz-appearance: textfield;
 }

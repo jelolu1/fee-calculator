@@ -1,6 +1,7 @@
 :root {
 	--white-color: rgb(240, 248, 255);
 	--blue-color: rgb(0, 157, 224);
+	--lightblue-color: rgb(0, 157, 224, 0.08);
 	--red-color: rgba(255, 38, 0, 1);
 	--gray-color: rgb(134, 134, 134);
 	--bg-color: rgb(32, 39, 49);
@@ -8,69 +9,58 @@
 	--warning-color: rgb(255, 60, 0);
 	--btn-inactive-color: rgb(240, 248, 255, 0.6);
 
-	--calculator-max-width: 650px;
-	--calculator-max-height: 1000px;
+	/* CalculatorField.module.css */
 	--input-quantity-width: 75px;
 
-	--calculator-gap: 25px;
-	--quantity-gap: 20px;
-
+	/* Calculator.module.css */
 	--calculator-form-padding: 0 50px;
+	--quantity-gap: 20px;
+	--calculator-btn-font-size: 1.3rem;
+	--btn-instructions-size: 42px;
+	--calculator-btn-padding: 20px;
 
 	/* index.css */
-	--global-font-family: 'Montserrat', sans-serif;
 	--global-font-size: 20px;
-	--global-font-weight: 600;
 
+	/* BtnQuantity.module.css */
 	--quantity-btn-size: 50px;
-	--close-btn-font-size: 16px;
-	--modal-fee-font-size: 32px;
-	--calc-btn-font-size: 1.3rem;
 
-	--calc-btn-padding: 20px;
-
+	/* ResultsModal.module.css */
 	--display-element-flex-direction: row;
-	--display-element-align-items: center;
 }
 
 @media only screen and (max-width: 768px) {
 	:root {
 		--calculator-form-padding: 10px 40px;
+		--btn-instructions-size: 32px;
 		--display-element-flex-direction: column;
 	}
 }
 
 @media only screen and (max-width: 650px) {
 	:root {
-		--calculator-form-padding: 50px 25px;
-		--global-font-size: 18px;
 		--input-quantity-width: 60px;
-		--quantity-btn-size: 45px;
-		--calc-btn-padding: 10px;
-		--warning-modal-margin-top: 175px;
-		--warning-modal-margin-bottom: 10px;
+		--calculator-form-padding: 50px 25px;
 		--quantity-gap: 0px;
+		--calculator-btn-padding: 10px;
+		--global-font-size: 18px;
+		--quantity-btn-size: 45px;
 	}
 }
 
 @media only screen and (max-width: 450px) {
 	:root {
-		--calculator-form-padding: 75px 25px;
-		--global-font-size: 16px;
-		--quantity-btn-size: 40px;
 		--input-quantity-width: 45px;
-		--btn-quantity-padding: 0;
+		--calculator-form-padding: 75px 25px;
+		--calculator-btn-font-size: 1.1rem;
+		--global-font-size: 16px;
 		--quantity-btn-size: 35px;
-		--calc-btn-font-size: 1.1rem;
-		--warning-modal-margin-top: 150px;
-		--warning-modal-max-width: 200px;
-		--warning-modal-margin-bottom: 0px;
 	}
 }
 
 @media only screen and (max-width: 320px) {
 	:root {
-		---calculator-form-padding: 100px 10px;
+		--calculator-form-padding: 100px 10px;
 		--global-font-size: 13px;
 	}
 }

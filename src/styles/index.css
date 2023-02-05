@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 * {
-	font-family: var(--global-font-family);
-	font-weight: var(--global-font-weight);
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
 }
 
 html {

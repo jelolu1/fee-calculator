@@ -36,7 +36,7 @@ export namespace calculatorFeeConstants {
 
 /* Custom Interfaces */
 
-interface calculatedFeeInterface {
+export interface calculatedFeeInterface {
 	minimumFee: number;
 	distanceFee: number;
 	itemsFee: number;
@@ -51,7 +51,7 @@ interface dateObjectInterface {
 	time: string;
 }
 
-export class dateObject implements dateObjectInterface {
+export class DateObject implements dateObjectInterface {
 	day: string;
 	time: string;
 	constructor(day: string, time: string) {
@@ -61,7 +61,7 @@ export class dateObject implements dateObjectInterface {
 }
 
 export interface fieldValueObject {
-	value: dateObject | number;
+	value: DateObject | number;
 	modified: boolean;
 }
 

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Calculator } from './components/Calculator/Calculator';
-import InstructionsModal from './components/Modals/InstructionsModal';
-import ResultModal from './components/Modals/ResultModal';
+import { InstructionsModal } from './components/Modals/InstructionsModal';
+import { ResultModal } from './components/Modals/ResultModal';
 import { BubbleBackground } from './components/UI/BubbleBackground';
-import TranslationInterface from './components/UI/TranslationInterface';
+import { TranslationInterface } from './components/UI/TranslationInterface';
 
 function App() {
 	const [showInstructionsModal, setShowInstructionsModal] =

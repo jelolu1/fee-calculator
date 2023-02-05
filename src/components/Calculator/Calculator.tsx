@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
-import {
-	calculatorFeeConstants,
-	CalculatorProps,
-	dateObject,
-	fieldValueObject,
-} from '../../constants';
+import { MouseEventHandler, useEffect, useState } from 'react';
+import { CalculatorProps, DateObject, fieldValueObject } from '../../constants';
+import utilityClasses from '../../styles/utility.module.css';
+import { calculateFee } from './calculateFee';
 import styles from './Calculator.module.css';
 import { CalculatorField } from './CalculatorField';
 
@@ -27,7 +24,7 @@ export const Calculator = ({
 		modified: false,
 	});
 	const [orderDate, setOrderTime] = useState<fieldValueObject>({
-		value: new dateObject('', ''),
+		value: new DateObject('', ''),
 		modified: false,
 	});
 	const [btnOn, setBtnOn] = useState<boolean>(false);
@@ -67,80 +64,7 @@ export const Calculator = ({
 		},
 	];
 
-	const calculateFee = (
-		cValue: number,
-		dDistance: number,
-		nItems: number,
-		oDate: dateObject
-	) => {
-		const {
-			minCartValue,
-			minDistance,
-			minDistanceFee,
-			extraDistanceInterval,
-			nonChargedItems,
-			itemFee,
-			limitBulkFee,
-			bulkFee,
-			rushDay,
-			startRushHour,
-			endRushHour,
-			rushHourExtra,
-			maxFee,
-			freeDeliveryMinimum,
-		} = calculatorFeeConstants;
-
-		const fee = {
-			minimumFee: 0,
-			distanceFee: 0,
-			itemsFee: 0,
-			rushHourFee: 0,
-			exceedingFeeReduction: 0,
-			totalFee: 0,
-			totalFeeReduction: 0,
-		};
-
-		if (cValue < minCartValue) {
-			fee.minimumFee = minCartValue - cValue;
-		}
-
-		fee.distanceFee =
-			dDistance <= minDistance
-				? minDistanceFee
-				: Math.ceil(dDistance / extraDistanceInterval);
-
-		if (nItems > nonChargedItems) {
-			fee.itemsFee = (nItems - nonChargedItems) * itemFee;
-			if (nItems > limitBulkFee) fee.itemsFee += bulkFee;
-		}
-
-		fee.totalFee = fee.minimumFee + fee.distanceFee + fee.itemsFee;
-
-		const date = new Date(oDate.day + oDate.time);
-		const weekDay = date.getUTCDay();
-		const hour = date.getHours();
-
-		if (weekDay === rushDay && hour >= startRushHour && hour <= endRushHour) {
-			fee.rushHourFee = fee.totalFee * rushHourExtra;
-		}
-
-		fee.totalFee += fee.rushHourFee;
-
-		if (fee.totalFee > maxFee) {
-			fee.exceedingFeeReduction = maxFee - fee.totalFee;
-			fee.totalFee = maxFee;
-		}
-
-		if (cValue >= freeDeliveryMinimum) {
-			fee.totalFeeReduction = -fee.totalFee;
-			fee.totalFee = 0;
-		}
-
-		setShowResultModal(true);
-		setCalculatedFee(fee);
-	};
-
-	const submitClickHandler = (e: any) => {
+	const submitClickHandler: MouseEventHandler = (e: any) => {
 		e.preventDefault();
 
 		if (!btnOn) return;
@@ -156,7 +80,9 @@ export const Calculator = ({
 			cartValue.value,
 			deliveryDistance.value,
 			numberOfItems.value,
-			orderDate.value
+			orderDate.value,
+			setShowResultModal,
+			setCalculatedFee
 		);
 	};
 
@@ -165,8 +91,8 @@ export const Calculator = ({
 			cartValue.value > 0 &&
 			deliveryDistance.value > 0 &&
 			numberOfItems.value > 0 &&
-			(orderDate.value as dateObject).day !== '' &&
-			(orderDate.value as dateObject).time !== ''
+			(orderDate.value as DateObject).day !== '' &&
+			(orderDate.value as DateObject).time !== ''
 		) {
 			setBtnOn(true);
 		} else {
@@ -175,16 +101,16 @@ export const Calculator = ({
 	}, [cartValue, deliveryDistance, numberOfItems, orderDate]);
 
 	return (
-		<main className={styles['calc-container']}>
-			<div className={`${styles['spacer']} ${styles['calc-header']}`}>
+		<main className={styles['calculator-container']}>
+			<div className={`${styles['spacer']} ${styles['calculator-header']}`}>
 				<button
 					onClick={() => setShowInstructionsModal(true)}
-					className={styles['btn-info']}
+					className={styles['btn-instructions']}
 				>
 					i
 				</button>
 			</div>
-			<form className={styles['calc-form']}>
+			<form className={styles['calculator-form']}>
 				{calculatorFields.map((field) => (
 					<CalculatorField
 						key={field.id}
@@ -199,15 +125,15 @@ export const Calculator = ({
 				))}
 				<button
 					onClick={submitClickHandler}
-					className={`${styles['calc-btn']} ${
-						btnOn ? styles['btn-on'] : styles['btn-off']
+					className={`${styles['calculator-btn']} ${
+						btnOn ? utilityClasses['btn-on'] : utilityClasses['btn-off']
 					}`}
 				>
 					{t('calculateFee').toUpperCase()}
 				</button>
 			</form>
 
-			<div className={`${styles['spacer']} ${styles['calc-footer']}`} />
+			<div className={`${styles['spacer']} ${styles['calculator-footer']}`} />
 		</main>
 	);
 };

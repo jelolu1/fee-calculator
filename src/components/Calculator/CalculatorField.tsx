@@ -1,13 +1,19 @@
-import { ChangeEvent, MouseEvent } from 'react';
+import {
+	ChangeEvent,
+	ChangeEventHandler,
+	MouseEvent,
+	MouseEventHandler,
+} from 'react';
 import {
 	calculatorFeeConstants,
 	CalculatorFieldProps,
-	dateObject,
+	DateObject,
 	fieldValueObject,
 } from '../../constants';
 import utilityClasses from '../../styles/utility.module.css';
-import BtnQuantity from './BtnQuantity';
+import { BtnQuantity } from './BtnQuantity';
 import styles from './CalculatorField.module.css';
+
 export const CalculatorField = ({
 	id,
 	title,
@@ -17,7 +23,7 @@ export const CalculatorField = ({
 	fieldValue,
 	t,
 }: CalculatorFieldProps) => {
-	const handleDecreaseClick = (e: MouseEvent) => {
+	const decreaseFieldHandler: MouseEventHandler = (e: MouseEvent) => {
 		e.preventDefault();
 
 		const { cartValueStep, distanceStep, itemsStep, minNumberValue } =
@@ -48,7 +54,7 @@ export const CalculatorField = ({
 			}));
 	};
 
-	const handleIncreaseClick = (e: MouseEvent) => {
+	const increaseFieldHandler: MouseEventHandler = (e: MouseEvent) => {
 		e.preventDefault();
 
 		const { cartValueStep, distanceStep, itemsStep } = calculatorFeeConstants;
@@ -70,7 +76,7 @@ export const CalculatorField = ({
 			}));
 	};
 
-	const changeInputHandler = (e: ChangeEvent) => {
+	const changeInputHandler: ChangeEventHandler = (e: ChangeEvent) => {
 		const inputValue = (e.target as HTMLInputElement).value;
 		const dateType = (e.target as HTMLInputElement).type;
 
@@ -87,14 +93,14 @@ export const CalculatorField = ({
 		} else {
 			dateType === 'time'
 				? setValue((prev: fieldValueObject) => {
-						const prevDay = (prev.value as dateObject).day;
+						const prevDay = (prev.value as DateObject).day;
 						return {
 							value: { day: prevDay, time: inputValue },
 							modified: prev.modified || (prevDay !== '' && inputValue !== ''),
 						};
 				  })
 				: setValue((prev: fieldValueObject) => {
-						const prevTime = (prev.value as dateObject).time;
+						const prevTime = (prev.value as DateObject).time;
 						return {
 							value: { day: inputValue, time: prevTime },
 							modified: prev.modified || (prevTime !== '' && inputValue !== ''),
@@ -108,7 +114,7 @@ export const CalculatorField = ({
 			{inputType === 'number' && typeof fieldValue.value === 'number' && (
 				<div className={styles['calculator-field']}>
 					<div className={styles['div-title']}>
-						<p>{title}</p>
+						<label>{title}</label>
 						{fieldValue.modified && fieldValue.value === 0 && (
 							<span> {t('errorMsgNumber')}</span>
 						)}
@@ -116,7 +122,7 @@ export const CalculatorField = ({
 
 					<div className={styles['number-container']}>
 						<BtnQuantity
-							clickHandler={handleIncreaseClick}
+							clickHandler={decreaseFieldHandler}
 							direction="decrement"
 						/>
 						<input
@@ -133,7 +139,7 @@ export const CalculatorField = ({
 							required
 						/>
 						<BtnQuantity
-							clickHandler={handleIncreaseClick}
+							clickHandler={increaseFieldHandler}
 							direction="increment"
 						/>
 					</div>
@@ -146,7 +152,7 @@ export const CalculatorField = ({
 					className={`${styles['calculator-field']} ${styles['date-field']}`}
 				>
 					<div className={styles['div-title']}>
-						<p>{title}</p>
+						<label>{title}</label>
 						{fieldValue.modified &&
 							(fieldValue.value.day === '' || fieldValue.value.time === '') && (
 								<span>{t('errorMsgDate')}</span>

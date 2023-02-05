@@ -1,11 +1,11 @@
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, MouseEventHandler, useEffect, useState } from 'react';
 import { lngsList, TranslationInterfaceProps } from '../../constants';
 import styles from './TranslationInterface.module.css';
 
-const TranslationInterface = ({ i18n }: TranslationInterfaceProps) => {
+export const TranslationInterface = ({ i18n }: TranslationInterfaceProps) => {
 	const [currentLng, setCurrentLng] = useState<string>('en');
 
-	const clickHandler = (e: MouseEvent) => {
+	const clickHandler: MouseEventHandler = (e: MouseEvent) => {
 		e.preventDefault();
 		setCurrentLng((e.target as HTMLInputElement).id);
 	};
@@ -32,5 +32,3 @@ const TranslationInterface = ({ i18n }: TranslationInterfaceProps) => {
 		</div>
 	);
 };
-
-export default TranslationInterface;

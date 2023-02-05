@@ -1,13 +1,9 @@
 import { propsBtnQuantity } from '../../constants';
-import utilityClasses from '../../styles/utility.module.css';
 import styles from './BtnQuantity.module.css';
 
-const btnQuantity = ({ clickHandler, direction }: propsBtnQuantity) => {
+export const BtnQuantity = ({ clickHandler, direction }: propsBtnQuantity) => {
 	return (
-		<button
-			className={`${utilityClasses['btn']} ${styles['btn-quantity']}`}
-			onClick={clickHandler}
-		>
+		<button className={styles['btn-quantity']} onClick={clickHandler}>
 			<span className={styles['span-icon']}>
 				<svg viewBox="0 0 16 16" width="1em" height="1em">
 					{direction === 'decrement' && (
@@ -21,5 +17,3 @@ const btnQuantity = ({ clickHandler, direction }: propsBtnQuantity) => {
 		</button>
 	);
 };
-
-export default btnQuantity;

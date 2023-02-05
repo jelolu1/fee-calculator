@@ -2,7 +2,7 @@ import { propsInstructionsModal } from '../../constants';
 import { Modal } from '../UI/Modal';
 import styles from './InstructionsModal.module.css';
 
-const InstructionsModal = ({
+export const InstructionsModal = ({
 	setShowInstructionsModal,
 	t,
 }: propsInstructionsModal) => {
@@ -36,5 +36,3 @@ const InstructionsModal = ({
 		</Modal>
 	);
 };
-
-export default InstructionsModal;

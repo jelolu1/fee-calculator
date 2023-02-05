@@ -1,15 +1,18 @@
 .btn-quantity {
 	border-radius: 50%;
-	border: 1px solid var(--blue-color);
+	border: 2px solid var(--blue-color);
 	min-height: var(--quantity-btn-size);
 	min-width: var(--quantity-btn-size);
-	background-color: var(--blue-color);
-	fill: var(--white-color);
+	background-color: var(--lightblue-color);
+	fill: var(--blue-color);
+	font-size: inherit;
+	cursor: pointer;
+	transition: background-color 200ms;
 }
 
 .btn-quantity:hover {
-	background-color: var(--white-color);
-	fill: var(--blue-color);
+	background-color: var(--blue-color);
+	fill: var(--white-color);
 }
 
 .span-icon {

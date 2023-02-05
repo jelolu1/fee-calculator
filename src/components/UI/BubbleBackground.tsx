@@ -1,4 +1,5 @@
 import styles from './BubbleBackground.module.css';
+
 export const BubbleBackground = () => {
 	return (
 		<div className={styles['bubble']}>
