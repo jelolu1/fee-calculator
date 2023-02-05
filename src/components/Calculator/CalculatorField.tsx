@@ -5,8 +5,9 @@ import {
 	dateObject,
 	fieldValueObject,
 } from '../../constants';
+import utilityClasses from '../../styles/utility.module.css';
+import BtnQuantity from './BtnQuantity';
 import styles from './CalculatorField.module.css';
-
 export const CalculatorField = ({
 	id,
 	title,
@@ -105,7 +106,7 @@ export const CalculatorField = ({
 	return (
 		<>
 			{inputType === 'number' && typeof fieldValue.value === 'number' && (
-				<div className={styles['number-field']}>
+				<div className={styles['calculator-field']}>
 					<div className={styles['div-title']}>
 						<p>{title}</p>
 						{fieldValue.modified && fieldValue.value === 0 && (
@@ -114,18 +115,16 @@ export const CalculatorField = ({
 					</div>
 
 					<div className={styles['number-container']}>
-						<button
-							className={styles['btn-quantity']}
-							onClick={handleDecreaseClick}
-						>
-							<span className={styles['span-icon']}>
-								<svg viewBox="0 0 16 16" width="1em" height="1em">
-									<path d="M14.125 7.344H1.875v1.312h12.25V7.344z" />
-								</svg>
-							</span>
-						</button>
+						<BtnQuantity
+							clickHandler={handleIncreaseClick}
+							direction="decrement"
+						/>
 						<input
-							className={styles['input-quantity']}
+							className={`${styles['input-quantity']} ${
+								fieldValue.modified && fieldValue.value === 0
+									? utilityClasses['input-error']
+									: ''
+							}`}
 							type={inputType}
 							min="0"
 							step={id === 'cart' ? 0.5 : 1}
@@ -133,23 +132,19 @@ export const CalculatorField = ({
 							value={fieldValue.value as number}
 							required
 						/>
-						<button
-							className={styles['btn-quantity']}
-							onClick={handleIncreaseClick}
-						>
-							<span className={styles['span-icon']}>
-								<svg viewBox="0 0 16 16" width="1em" height="1em">
-									<path d="M14.125 7.344H8.656V1.875H7.344v5.469H1.875v1.312h5.469v5.469h1.312V8.656h5.469V7.344z" />
-								</svg>
-							</span>
-						</button>
+						<BtnQuantity
+							clickHandler={handleIncreaseClick}
+							direction="increment"
+						/>
 					</div>
 					<p className={styles['p-unit']}>{unit}</p>
 				</div>
 			)}
 
 			{inputType === 'date' && typeof fieldValue.value !== 'number' && (
-				<div className={styles['date-field']}>
+				<div
+					className={`${styles['calculator-field']} ${styles['date-field']}`}
+				>
 					<div className={styles['div-title']}>
 						<p>{title}</p>
 						{fieldValue.modified &&
@@ -158,14 +153,22 @@ export const CalculatorField = ({
 							)}
 					</div>
 					<input
-						className={styles['input-date']}
+						className={`${styles['input-date']} ${
+							fieldValue.modified && fieldValue.value.day === ''
+								? utilityClasses['input-error']
+								: ''
+						}`}
 						type={'date'}
 						onChange={changeInputHandler}
 						value={fieldValue.value.day}
 						required
 					/>
 					<input
-						className={styles['input-date']}
+						className={`${styles['input-date']} ${
+							fieldValue.modified && fieldValue.value.time === ''
+								? utilityClasses['input-error']
+								: ''
+						}`}
 						type={'time'}
 						onChange={changeInputHandler}
 						value={fieldValue.value.time}

@@ -1,93 +1,64 @@
-.span-fee{
-    font-size: var(--modal-fee-font-size);
-    color: var(--white-color);
-    border: 1px solid var(--blue-color);
-    background-color: var(--blue-color);
-    border-radius: 5px;
-    padding: 12px 24px;
+.span-result {
+	padding: 12px 24px;
+	color: var(--white-color);
+	background-color: var(--blue-color);
+	border: 1px solid var(--blue-color);
+	border-radius: 5px;
+	font-size: var(--modal-fee-font-size);
 }
 
-.display-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background: transparent;
-    border:none;
-    font-size: 1rem;
-    cursor:pointer;
-    margin-top: 18px;
+.display-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 24px;
+	background-color: transparent;
+	border: none;
+	gap: 10px;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
-.not-rotated{
-    rotate: 0deg;
-    transition: rotate 400ms ;
+.display-list {
+	list-style-type: none;
+	padding: 12px 0px;
+	margin-bottom: 0;
 }
 
-.rotated{
-    rotate: 180deg;
-    transition: rotate 400ms ;
+.display-list li {
+	margin-bottom: 32px;
 }
 
-.closed{
-    height: 0;
-    opacity: 0;
+.display-element {
+	display: flex;
+	flex-direction: var(--display-element-flex-direction);
+	align-items: var(--display-element-align-items);
+	gap: 18px;
 }
 
-.open{
-    height: auto;
-    opacity: 1;
-    transition: all 500ms ease;
+.display-element h4 {
+	border-bottom: 2px solid var(--blue-color);
+	margin: 0;
 }
 
-.display-list{
-    list-style-type: none;
-    padding: 12px 0px;
+.display-element span {
+	font-size: 1rem;
+	padding: 8px 4px;
 }
 
-.display-list li{
-    margin-bottom: 32px;
+.display-fee-reduction {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-left: 24px;
+	margin-bottom: -32px;
+	gap: 12px;
 }
 
-.display-list li .div-display-element{
-    display: flex;
-    flex-direction: var(--display-element-flex-direction);
-    align-items: var(--display-element-align-items);
-    gap: 18px;
+.display-fee-reduction h4 {
+	font-weight: 400;
 }
 
-
-
-.display-list li span{
-    border-bottom: 2px solid var(--blue-color);
-}
-
-.display-list li .span-result{
-    border-bottom: none;
-    background-color: var(--blue-color);
-    color: var(--white-color);
-    padding: 8px 4px;
-    border: 1px solid var(--blue-color);
-    border-radius: 10px;
-}
-
-.display-list li .div-fee-reduction{
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-
-    margin-left: 18px;
-
-}
-
-.display-list li .div-fee-reduction p{
-    font-weight: 400;
-    margin-bottom: 0;
-
-
-}
-
-.display-list li .div-fee-reduction .fee-reduction{
-    color: var(--blue-color);
-    font-weight: 600;
+.display-fee-reduction .fee-reduction {
+	color: var(--blue-color);
 }

@@ -1,0 +1,30 @@
+.not-rotated {
+	rotate: 0deg;
+	transition: rotate 400ms;
+}
+
+.rotated {
+	rotate: 180deg;
+	transition: rotate 400ms;
+}
+
+.closed {
+	height: 0;
+	opacity: 0;
+}
+
+.open {
+	height: auto;
+	opacity: 1;
+	transition: all 500ms ease;
+}
+
+.input-error {
+	border-bottom: 1px solid var(--warning-color);
+}
+
+.btn {
+	cursor: pointer;
+	transition: background-color 150ms;
+	font-size: inherit;
+}

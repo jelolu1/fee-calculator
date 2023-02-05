@@ -175,7 +175,7 @@ export const Calculator = ({
 	}, [cartValue, deliveryDistance, numberOfItems, orderDate]);
 
 	return (
-		<section className={styles['calc-container']}>
+		<main className={styles['calc-container']}>
 			<div className={`${styles['spacer']} ${styles['calc-header']}`}>
 				<button
 					onClick={() => setShowInstructionsModal(true)}
@@ -208,6 +208,6 @@ export const Calculator = ({
 			</form>
 
 			<div className={`${styles['spacer']} ${styles['calc-footer']}`} />
-		</section>
+		</main>
 	);
 };

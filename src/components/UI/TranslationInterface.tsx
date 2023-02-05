@@ -1,12 +1,6 @@
 import { MouseEvent, useEffect, useState } from 'react';
-import { TranslationInterfaceProps } from '../../constants';
+import { lngsList, TranslationInterfaceProps } from '../../constants';
 import styles from './TranslationInterface.module.css';
-
-const lngsList = {
-	en: { nativeName: 'English' },
-	de: { nativeName: 'Deutsch' },
-	sp: { nativeName: 'Spanish' },
-};
 
 const TranslationInterface = ({ i18n }: TranslationInterfaceProps) => {
 	const [currentLng, setCurrentLng] = useState<string>('en');

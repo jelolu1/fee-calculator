@@ -1,3 +1,5 @@
+import { MouseEventHandler } from 'react';
+
 /* Calculate Fee Constants */
 
 export namespace calculatorFeeConstants {
@@ -16,6 +18,12 @@ export namespace calculatorFeeConstants {
 	export const maxFee: number = 15;
 	export const freeDeliveryMinimum: number = 100;
 }
+
+export const lngsList = {
+	en: { nativeName: 'English' },
+	de: { nativeName: 'Deutsch' },
+	sp: { nativeName: 'Spanish' },
+};
 
 /* Input Steps Constants*/
 
@@ -94,4 +102,9 @@ export interface propsResultModal {
 export interface propsInstructionsModal {
 	setShowInstructionsModal: Function;
 	t: Function;
+}
+
+export interface propsBtnQuantity {
+	clickHandler: MouseEventHandler;
+	direction: string;
 }

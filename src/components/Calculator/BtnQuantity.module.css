@@ -1,0 +1,19 @@
+.btn-quantity {
+	border-radius: 50%;
+	border: 1px solid var(--blue-color);
+	min-height: var(--quantity-btn-size);
+	min-width: var(--quantity-btn-size);
+	background-color: var(--blue-color);
+	fill: var(--white-color);
+}
+
+.btn-quantity:hover {
+	background-color: var(--white-color);
+	fill: var(--blue-color);
+}
+
+.span-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

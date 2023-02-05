@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { propsResultModal } from '../../constants';
+import utilityClasses from '../../styles/utility.module.css';
 import { Modal } from '../UI/Modal';
 import styles from './ResultModal.module.css';
 
@@ -13,10 +14,8 @@ const ResultModal = ({
 	return (
 		<Modal setShowModal={setShowResultModal}>
 			<>
-				<h2 className={styles['calculated-fee-title']}>
-					{t('resultModal.title').toUpperCase()}
-				</h2>
-				<span className={styles['span-fee']}>
+				<h2>{t('resultModal.title').toUpperCase()}</h2>
+				<span className={styles['span-result']}>
 					{calculatedFee.totalFee.toFixed(2)} €
 				</span>
 				<button
@@ -24,7 +23,11 @@ const ResultModal = ({
 					className={styles['display-btn']}
 				>
 					<svg
-						className={displayed ? styles['rotated'] : styles['not-rotated']}
+						className={
+							displayed
+								? utilityClasses['rotated']
+								: utilityClasses['not-rotated']
+						}
 						height="48"
 						width="48"
 					>
@@ -32,57 +35,68 @@ const ResultModal = ({
 					</svg>
 					{t('resultModal.display').toUpperCase()}
 					<svg
-						className={displayed ? styles['rotated'] : styles['not-rotated']}
+						className={
+							displayed
+								? utilityClasses['rotated']
+								: utilityClasses['not-rotated']
+						}
 						height="48"
 						width="48"
 					>
 						<path d="m24 30.75-12-12 2.15-2.15L24 26.5l9.85-9.85L36 18.8Z" />
 					</svg>
 				</button>
-				<div className={displayed ? styles['open'] : styles['closed']}>
+				<div
+					className={
+						displayed ? utilityClasses['open'] : utilityClasses['closed']
+					}
+				>
 					<ul className={styles['display-list']}>
 						<li>
-							<div className={styles['div-display-element']}>
-								<span>{t('resultModal.minimumFee')}</span>
+							<div className={styles['display-element']}>
+								<h4>{t('resultModal.minimumFee')}</h4>
 								<span className={styles['span-result']}>
 									{calculatedFee.minimumFee.toFixed(2)} €
 								</span>
 							</div>
 						</li>
 						<li>
-							<div className={styles['div-display-element']}>
-								<span>{t('resultModal.distanceFee')}</span>
+							<div className={styles['display-element']}>
+								<h4>{t('resultModal.distanceFee')}</h4>
 								<span className={styles['span-result']}>
 									{calculatedFee.distanceFee.toFixed(2)} €
 								</span>
 							</div>
 						</li>
 						<li>
-							<div className={styles['div-display-element']}>
-								<span>{t('resultModal.itemsFee')}</span>
+							<div className={styles['display-element']}>
+								<h4>{t('resultModal.itemsFee')}</h4>
 								<span className={styles['span-result']}>
 									{calculatedFee.itemsFee.toFixed(2)} €
 								</span>
 							</div>
 						</li>
 						<li>
-							<div className={styles['div-display-element']}>
-								<span>{t('resultModal.rushHourFee')}</span>
+							<div className={styles['display-element']}>
+								<h4>{t('resultModal.rushHourFee')}</h4>
 								<span className={styles['span-result']}>
 									{calculatedFee.rushHourFee.toFixed(2)} €
 								</span>
 							</div>
 						</li>
 						<li>
-							<div className={styles['div-display-element']}>
-								<span>{t('resultModal.excedingFee')}</span>
+							<div className={styles['display-element']}>
+								<h4>{t('resultModal.excedingFee')}</h4>
 								<span className={styles['span-result']}>
 									{calculatedFee.exceedingFeeReduction < 0 ? 'Yes' : 'No'}
 								</span>
 							</div>
 							{calculatedFee.exceedingFeeReduction < 0 && (
-								<div className={styles['div-fee-reduction']}>
-									<p>{t('resultModal.feeReduction')}</p>
+								<div className={styles['display-fee-reduction']}>
+									<h4>
+										{'- '}
+										{t('resultModal.feeReduction')}
+									</h4>
 									<p className={styles['fee-reduction']}>
 										{calculatedFee.exceedingFeeReduction.toFixed(2)} €
 									</p>
@@ -90,15 +104,18 @@ const ResultModal = ({
 							)}
 						</li>
 						<li>
-							<div className={styles['div-display-element']}>
-								<span>{t('resultModal.cartSuperiorOneHundred')}</span>
+							<div className={styles['display-element']}>
+								<h4>{t('resultModal.cartSuperiorOneHundred')}</h4>
 								<span className={styles['span-result']}>
 									{calculatedFee.totalFeeReduction < 0 ? 'Yes' : 'No'}
 								</span>
 							</div>
 							{calculatedFee.totalFeeReduction < 0 && (
-								<div className={styles['div-fee-reduction']}>
-									<p>{t('resultModal.feeReduction')}</p>
+								<div className={styles['display-fee-reduction']}>
+									<h4>
+										{'- '}
+										{t('resultModal.feeReduction')}
+									</h4>
 									<p className={styles['fee-reduction']}>
 										{calculatedFee.totalFeeReduction.toFixed(2)} €
 									</p>

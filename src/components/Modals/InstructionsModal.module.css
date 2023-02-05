@@ -1,16 +1,17 @@
-.instructions-list{
-    list-style-type: none;
-    padding: 12px 0px;
-}   
-
-.instructions-list li span{
-    border-bottom: 2px solid var(--blue-color);
+.instructions-list {
+	list-style-type: none;
+	padding: 12px 0px;
+	margin-left: 16px;
 }
 
-.instructions-list li p{
-    font-weight: 400;
+.instructions-title {
+	margin-bottom: 0;
 }
 
-.instructions-title{
-    margin-bottom: 0;
+.instructions-list li span {
+	border-bottom: 2px solid var(--blue-color);
+}
+
+.instructions-list li p {
+	font-weight: 400;
 }

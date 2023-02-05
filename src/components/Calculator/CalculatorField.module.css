@@ -1,130 +1,80 @@
-.calc-field{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.calculator-field {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0px;
 }
 
-.number-field{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    gap: 0px;
+.calculator-field .div-title {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
 }
 
-.number-field .div-title{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+.calculator-field .div-title span {
+	color: var(--warning-color);
+	font-size: 0.75rem;
+	font-weight: 400;
+	position: absolute;
+	bottom: -10px;
 }
 
-.number-field .div-title span{
-    color: var(--warning-color);
-    font-size: 0.75rem;
-    font-weight: 400;
-    position: absolute;
-    bottom: -10px;
+.p-unit {
+	width: 5%;
+	text-align: center;
 }
 
-/* Remove duplicated classes */
-.date-field .div-title{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+.date-field {
+	gap: 10px;
 }
 
-.date-field .div-title span{
-    color: var(--warning-color);
-    font-size: 0.75rem;
-    font-weight: 400;
-    position: absolute;
-    bottom: -30px;
+.date-field .div-title span {
+	bottom: -25px;
 }
 
-.number-field .p-unit{
-    width: 5%;
-    text-align: center;
+.number-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 45%;
+	gap: var(--quantity-gap);
 }
 
-.number-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45%;
-    gap: var(--quantity-gap);
+.input-quantity {
+	width: var(--input-quantity-width);
+	height: 0px;
+	padding: 23px 0px;
+	text-align: center;
+	font-size: inherit;
+	border: none;
+	border-bottom: 1px solid var(--blue-color);
+	background-color: transparent;
 }
 
-.input-quantity{
-    width: var(--input-quantity-width);
-    height: 0px;
-    padding: 23px 0px;
-    text-align: center;
-    font-size: inherit;
-    border:none;
-    border-bottom: 1px solid var(--blue-color);
-    background-color: transparent;
+.input-date {
+	width: 60%;
+	max-height: 26px;
+	padding: 10px 10px;
+	padding: 15px 15px;
+	font-size: 0.95rem;
+	border: none;
+	background-color: transparent;
+	border-bottom: 1px solid var(--blue-color);
+	cursor: pointer;
 }
 
-.input-quantity:focus{
-    outline: none;
-}
-
-.btn-quantity{
-    border-radius: 50%;
-    border: 1px solid var(--blue-color);
-    cursor:pointer;
-    min-height: var(--quantity-btn-size);
-    min-width: var(--quantity-btn-size);
-    background-color: var(--blue-color);
-    fill: var(--white-color);
-    transition: background-color 150ms;
-    font-size: inherit;
-}
-
-.btn-quantity:hover{
-    background-color: var(--white-color);
-    fill: var(--blue-color);
-}
-
-.span-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.date-field{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-
-.input-date{
-    width: 60%;
-    max-height: 26px;
-    padding: 10px 10px;
-    padding: 15px 15px;
-    font-size: inherit;
-    border:none;
-    background-color: transparent;
-    border-bottom: 1px solid var(--blue-color);
-    cursor: pointer;
-}
-
-.input-date:focus{
-    outline: none;
+.input-quantity:focus,
+.input-date:focus {
+	outline: none;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0; 
+	-webkit-appearance: none;
+	margin: 0;
 }
 
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield; /* Firefox */
 }

@@ -1,28 +1,28 @@
-@import '../../constants.css';
+@import '../../styles/variables.css';
 
 .bubble {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	line-height: 0;
+	z-index: -1;
 }
-  
+
+.bubble .top-bubble {
+	position: relative;
+	background-color: var(--blue-color);
+	height: 300px;
+}
+
 .bubble svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 229px;
+	display: block;
+	position: relative;
+	width: calc(100% + 1.3px);
+	height: 229px;
 }
 
 .bubble .shape-fill {
-    fill: var(--blue-color);
-}
-
-.top-bubble{
-    position: relative;
-    background-color: var(--blue-color);
-    height: 300px;
+	fill: var(--blue-color);
 }
