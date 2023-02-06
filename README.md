@@ -1,18 +1,23 @@
-# Wolt code test
+# WOLT SOFTWARE ENGINEERING INTERN, SUMMER 2023
 
-This project has been created to apply for an internship at Wolt
+this project has been created with the intention to apply for the position of Software Engineering Intern at Wolt.
 
-Following the instructions defined in the following github repository:
+It is based on the instructions defined in the following github repository:
 
 // https://github.com/woltapp/engineering-summer-intern-2023
 
-I considered that the calculation should be only possible if all the fields are fullfilled. This is an assumption, because it is not explicitly indicated in the instructions.
-
-## Run Code Instructions
+## Getting Started
 
 The project has been generated using Vite.
 
-I have not included the node_modules folder. Therefore, the first step to run it on a local machine for the first time, it is needed to install the necessary dependencies running:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/download/)
+- [npm](https://www.npmjs.com/get-npm)
+
+## Installation
 
 ```shell
 npm install
@@ -29,3 +34,7 @@ And to run the test, execute the command:
 ```shell
 npm run test
 ```
+
+# Project Notes and Considerations
+
+There is no explicity indication in that regard, but I considered that the calculation should be only possible if all the fields are fullfilled. This means that a calculation is not possible if cart value, delivery distance and/or number of products are equal to 0, or if the date has not been correctly entered.

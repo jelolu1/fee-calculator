@@ -1,9 +1,9 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { calculateFee } from '../components/Calculator/calculateFee';
 import { calculatedFeeInterface, DateObject } from '../constants';
 
 describe('calculateFee', () => {
-	it('Check fee calculation when all is 0', (): void => {
+	it('Check Fee Calculation - All Fields Empty', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -41,7 +41,83 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(0);
 	});
 
-	it('Check fee calculation 1', (): void => {
+	it('Check Fee Calculation - OneField === 0', (): void => {
+		let calculatedFee: calculatedFeeInterface = {
+			minimumFee: 0,
+			distanceFee: 0,
+			itemsFee: 0,
+			rushHourFee: 0,
+			exceedingFeeReduction: 0,
+			totalFeeReduction: 0,
+			totalFee: 0,
+		};
+
+		const cartValue = 1;
+		const deliveryDistance = 1;
+		const numberItems = 0;
+		const orderDate: DateObject = new DateObject('02/03/2023', '12:00');
+		const setShowResultModal = vi.fn(() => {});
+		const setCalculatedFee = vi.fn((newFee) => {
+			calculatedFee = newFee;
+		});
+
+		calculateFee(
+			cartValue,
+			deliveryDistance,
+			numberItems,
+			orderDate,
+			setShowResultModal,
+			setCalculatedFee
+		);
+
+		expect(calculatedFee.minimumFee).toBe(0);
+		expect(calculatedFee.distanceFee).toBe(0);
+		expect(calculatedFee.itemsFee).toBe(0);
+		expect(calculatedFee.rushHourFee).toBe(0);
+		expect(calculatedFee.exceedingFeeReduction).toBe(0);
+		expect(calculatedFee.totalFeeReduction).toBe(0);
+		expect(calculatedFee.totalFee).toBe(0);
+	});
+
+	it('Check Fee Calculation - Time Empty', (): void => {
+		let calculatedFee: calculatedFeeInterface = {
+			minimumFee: 0,
+			distanceFee: 0,
+			itemsFee: 0,
+			rushHourFee: 0,
+			exceedingFeeReduction: 0,
+			totalFeeReduction: 0,
+			totalFee: 0,
+		};
+
+		const cartValue = 1;
+		const deliveryDistance = 1;
+		const numberItems = 1;
+		const orderDate: DateObject = new DateObject('02/03/2023', '');
+		const setShowResultModal = vi.fn(() => {});
+		const setCalculatedFee = vi.fn((newFee) => {
+			calculatedFee = newFee;
+		});
+
+		calculateFee(
+			cartValue,
+			deliveryDistance,
+			numberItems,
+			orderDate,
+			setShowResultModal,
+			setCalculatedFee
+		);
+
+		expect(calculatedFee.minimumFee).toBe(0);
+		expect(calculatedFee.distanceFee).toBe(0);
+		expect(calculatedFee.itemsFee).toBe(0);
+		expect(calculatedFee.rushHourFee).toBe(0);
+		expect(calculatedFee.exceedingFeeReduction).toBe(0);
+		expect(calculatedFee.totalFeeReduction).toBe(0);
+		expect(calculatedFee.totalFee).toBe(0);
+	});
+
+	it('Check Fee Calculation - All Fields Filled', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -79,7 +155,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(11);
 	});
 
-	it('Check fee calculation 2', (): void => {
+	it('Check Fee Calculation - Cart Value === 10', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -117,45 +193,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(2);
 	});
 
-	it('Check fee calculation 3', (): void => {
-		let calculatedFee: calculatedFeeInterface = {
-			minimumFee: 0,
-			distanceFee: 0,
-			itemsFee: 0,
-			rushHourFee: 0,
-			exceedingFeeReduction: 0,
-			totalFeeReduction: 0,
-			totalFee: 0,
-		};
-
-		const cartValue = 100;
-		const deliveryDistance = 1;
-		const numberItems = 1;
-		const orderDate: DateObject = new DateObject('02/03/2023', '12:00');
-		const setShowResultModal = vi.fn(() => {});
-		const setCalculatedFee = vi.fn((newFee) => {
-			calculatedFee = newFee;
-		});
-
-		calculateFee(
-			cartValue,
-			deliveryDistance,
-			numberItems,
-			orderDate,
-			setShowResultModal,
-			setCalculatedFee
-		);
-
-		expect(calculatedFee.minimumFee).toBe(0);
-		expect(calculatedFee.distanceFee).toBe(2);
-		expect(calculatedFee.itemsFee).toBe(0);
-		expect(calculatedFee.rushHourFee).toBe(0);
-		expect(calculatedFee.exceedingFeeReduction).toBe(0);
-		expect(calculatedFee.totalFeeReduction).toBe(-2);
-		expect(calculatedFee.totalFee).toBe(0);
-	});
-
-	it('Check fee calculation 4', (): void => {
+	it('Check Fee Calculation - Delivery Distance === 999', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -193,7 +231,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(7);
 	});
 
-	it('Check fee calculation 5', (): void => {
+	it('Check Fee Calculation  - Delivery Distance === 1000', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -231,7 +269,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(7);
 	});
 
-	it('Check fee calculation 6', (): void => {
+	it('Check Fee Calculation - Delivery Distance === 1001', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -269,7 +307,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(8);
 	});
 
-	it('Check fee calculation 7', (): void => {
+	it('Check Fee Calculation - Delivery Distance === 1499', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -307,7 +345,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(8);
 	});
 
-	it('Check fee calculation 8', (): void => {
+	it('Check Fee Calculation - Delivery Distance === 1500', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -344,7 +382,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFeeReduction).toBe(0);
 		expect(calculatedFee.totalFee).toBe(8);
 	});
-	it('Check fee calculation 9', (): void => {
+	it('Check Fee Calculation - Delivery Distance > 1500', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -382,7 +420,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(9);
 	});
 
-	it('Check fee calculation 10', (): void => {
+	it('Check Fee Calculation - Number of Items === 4', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -420,7 +458,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(7);
 	});
 
-	it('Check fee calculation 11', (): void => {
+	it('Check Fee Calculation - Number of Items < 4', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -458,7 +496,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(7.5);
 	});
 
-	it('Check fee calculation 12', (): void => {
+	it('Check Fee Calculation - Number of Items < 4', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -496,7 +534,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(8);
 	});
 
-	it('Check fee calculation 13', (): void => {
+	it('Check Fee Calculation - Number of Items === 12', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -534,7 +572,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(11);
 	});
 
-	it('Check fee calculation 14', (): void => {
+	it('Check Fee Calculation - Number of Items > 12', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -572,7 +610,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(12.7);
 	});
 
-	it('Check fee calculation 15', (): void => {
+	it('Check Fee Calculation - Rush Hour Not Started', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -610,7 +648,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(7);
 	});
 
-	it('Check fee calculation 15', (): void => {
+	it('Check Fee Calculation - Rush Hour 15:00', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -648,7 +686,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(8.4);
 	});
 
-	it('Check fee calculation 16', (): void => {
+	it('Check Fee Calculation - Rush Hour 19:00', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -686,7 +724,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(8.4);
 	});
 
-	it('Check fee calculation 17', (): void => {
+	it('Check Fee Calculation - Rush Hour Ended', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -724,7 +762,7 @@ describe('calculateFee', () => {
 		expect(calculatedFee.totalFee).toBe(7);
 	});
 
-	it('Check fee calculation 18', (): void => {
+	it('Check Fee Calculation - Exceeding Max Fee', (): void => {
 		let calculatedFee: calculatedFeeInterface = {
 			minimumFee: 0,
 			distanceFee: 0,
@@ -760,5 +798,119 @@ describe('calculateFee', () => {
 		expect(calculatedFee.exceedingFeeReduction).toBe(-41.2);
 		expect(calculatedFee.totalFeeReduction).toBe(0);
 		expect(calculatedFee.totalFee).toBe(15);
+	});
+
+	it('Check Fee Calculation - Cart Value < 100', (): void => {
+		let calculatedFee: calculatedFeeInterface = {
+			minimumFee: 0,
+			distanceFee: 0,
+			itemsFee: 0,
+			rushHourFee: 0,
+			exceedingFeeReduction: 0,
+			totalFeeReduction: 0,
+			totalFee: 0,
+		};
+
+		const cartValue = 99.99;
+		const deliveryDistance = 1;
+		const numberItems = 1;
+		const orderDate: DateObject = new DateObject('02/03/2023', '12:00');
+		const setShowResultModal = vi.fn(() => {});
+		const setCalculatedFee = vi.fn((newFee) => {
+			calculatedFee = newFee;
+		});
+
+		calculateFee(
+			cartValue,
+			deliveryDistance,
+			numberItems,
+			orderDate,
+			setShowResultModal,
+			setCalculatedFee
+		);
+
+		expect(calculatedFee.minimumFee).toBe(0);
+		expect(calculatedFee.distanceFee).toBe(2);
+		expect(calculatedFee.itemsFee).toBe(0);
+		expect(calculatedFee.rushHourFee).toBe(0);
+		expect(calculatedFee.exceedingFeeReduction).toBe(0);
+		expect(calculatedFee.totalFeeReduction).toBe(0);
+		expect(calculatedFee.totalFee).toBe(2);
+	});
+
+	it('Check Fee Calculation - Cart Value === 100', (): void => {
+		let calculatedFee: calculatedFeeInterface = {
+			minimumFee: 0,
+			distanceFee: 0,
+			itemsFee: 0,
+			rushHourFee: 0,
+			exceedingFeeReduction: 0,
+			totalFeeReduction: 0,
+			totalFee: 0,
+		};
+
+		const cartValue = 100;
+		const deliveryDistance = 1;
+		const numberItems = 1;
+		const orderDate: DateObject = new DateObject('02/03/2023', '12:00');
+		const setShowResultModal = vi.fn(() => {});
+		const setCalculatedFee = vi.fn((newFee) => {
+			calculatedFee = newFee;
+		});
+
+		calculateFee(
+			cartValue,
+			deliveryDistance,
+			numberItems,
+			orderDate,
+			setShowResultModal,
+			setCalculatedFee
+		);
+
+		expect(calculatedFee.minimumFee).toBe(0);
+		expect(calculatedFee.distanceFee).toBe(2);
+		expect(calculatedFee.itemsFee).toBe(0);
+		expect(calculatedFee.rushHourFee).toBe(0);
+		expect(calculatedFee.exceedingFeeReduction).toBe(0);
+		expect(calculatedFee.totalFeeReduction).toBe(-2);
+		expect(calculatedFee.totalFee).toBe(0);
+	});
+
+	it('Check Fee Calculation - Cart Value > 100', (): void => {
+		let calculatedFee: calculatedFeeInterface = {
+			minimumFee: 0,
+			distanceFee: 0,
+			itemsFee: 0,
+			rushHourFee: 0,
+			exceedingFeeReduction: 0,
+			totalFeeReduction: 0,
+			totalFee: 0,
+		};
+
+		const cartValue = 100.01;
+		const deliveryDistance = 1;
+		const numberItems = 1;
+		const orderDate: DateObject = new DateObject('02/03/2023', '12:00');
+		const setShowResultModal = vi.fn(() => {});
+		const setCalculatedFee = vi.fn((newFee) => {
+			calculatedFee = newFee;
+		});
+
+		calculateFee(
+			cartValue,
+			deliveryDistance,
+			numberItems,
+			orderDate,
+			setShowResultModal,
+			setCalculatedFee
+		);
+
+		expect(calculatedFee.minimumFee).toBe(0);
+		expect(calculatedFee.distanceFee).toBe(2);
+		expect(calculatedFee.itemsFee).toBe(0);
+		expect(calculatedFee.rushHourFee).toBe(0);
+		expect(calculatedFee.exceedingFeeReduction).toBe(0);
+		expect(calculatedFee.totalFeeReduction).toBe(-2);
+		expect(calculatedFee.totalFee).toBe(0);
 	});
 });

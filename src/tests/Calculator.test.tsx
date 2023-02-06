@@ -1,7 +1,6 @@
-import { cleanup, fireEvent, render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Calculator } from '../components/Calculator/Calculator';
-import { calculatedFeeInterface } from '../constants';
 
 describe('Calculator', () => {
 	afterEach(cleanup);
