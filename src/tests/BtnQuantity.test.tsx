@@ -1,8 +1,7 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import { MouseEventHandler } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { BtnQuantity } from '../components/Calculator/BtnQuantity';
-
+import { BtnQuantity } from '../components/Calculator/Field/BtnQuantity';
 describe('BtnQuantity', () => {
 	afterEach(cleanup);
 

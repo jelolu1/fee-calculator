@@ -78,14 +78,26 @@ export interface CalculatorProps {
 	t: Function;
 }
 
-export interface CalculatorFieldProps {
-	id: string;
+export interface FieldLayoutProps {
+	children: JSX.Element;
 	title: string;
+	fieldValue: fieldValueObject;
+	inputType: string;
+	t: Function;
+}
+
+export interface NumberFieldProps {
+	id: string;
 	inputType: string;
 	unit: string | null;
 	setValue: Function;
 	fieldValue: fieldValueObject;
-	t: Function;
+}
+
+export interface DateFieldProps {
+	id: string;
+	setValue: Function;
+	fieldValue: fieldValueObject;
 }
 
 export interface ModalProps {

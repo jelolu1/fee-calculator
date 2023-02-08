@@ -1,4 +1,4 @@
-import { propsBtnQuantity } from '../../constants';
+import { propsBtnQuantity } from '../../../constants';
 import styles from './BtnQuantity.module.css';
 
 export const BtnQuantity = ({ clickHandler, direction }: propsBtnQuantity) => {

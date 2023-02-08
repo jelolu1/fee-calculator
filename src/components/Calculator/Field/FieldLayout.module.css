@@ -1,0 +1,21 @@
+.calculator-field {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0px;
+}
+
+.calculator-field .div-title {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.calculator-field .div-title span {
+	color: var(--warning-color);
+	font-size: 0.75rem;
+	font-weight: 400;
+	position: absolute;
+	bottom: -30px;
+}

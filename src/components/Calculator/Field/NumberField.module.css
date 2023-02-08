@@ -1,0 +1,37 @@
+.p-unit {
+	width: 5%;
+	text-align: center;
+}
+
+.number-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 45%;
+	gap: var(--quantity-gap);
+}
+
+.input-quantity {
+	width: var(--input-quantity-width);
+	height: 0px;
+	padding: 23px 0px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid var(--blue-color);
+	text-align: center;
+	font-size: inherit;
+}
+
+.input-quantity:focus {
+	outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}

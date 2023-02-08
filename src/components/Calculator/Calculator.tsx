@@ -3,7 +3,9 @@ import { CalculatorProps, DateObject, fieldValueObject } from '../../constants';
 import utilityClasses from '../../styles/utility.module.css';
 import { calculateFee } from './calculateFee';
 import styles from './Calculator.module.css';
-import { CalculatorField } from './CalculatorField';
+import { DateField } from './Field/DateField';
+import { FieldLayout } from './Field/FieldLayout';
+import { NumberField } from './Field/NumberField';
 
 export const Calculator = ({
 	setShowInstructionsModal,
@@ -111,18 +113,36 @@ export const Calculator = ({
 				</button>
 			</div>
 			<form className={styles['calculator-form']}>
-				{calculatorFields.map((field) => (
-					<CalculatorField
-						key={field.id}
-						id={field.id}
-						title={field.title}
-						inputType={field.inputType}
-						unit={field.unit}
-						setValue={field.setValue}
-						fieldValue={field.fieldValue}
-						t={t}
-					/>
-				))}
+				{calculatorFields.map((field) => {
+					return (
+						<FieldLayout
+							key={field.id}
+							title={field.title}
+							fieldValue={field.fieldValue}
+							inputType={field.inputType}
+							t={t}
+						>
+							<>
+								{field.inputType === 'number' && (
+									<NumberField
+										id={field.id}
+										inputType={field.inputType}
+										unit={field.unit}
+										setValue={field.setValue}
+										fieldValue={field.fieldValue}
+									/>
+								)}
+								{field.inputType === 'date' && (
+									<DateField
+										id={field.id}
+										setValue={field.setValue}
+										fieldValue={field.fieldValue}
+									/>
+								)}
+							</>
+						</FieldLayout>
+					);
+				})}
 				<button
 					onClick={submitClickHandler}
 					className={`${styles['calculator-btn']} ${

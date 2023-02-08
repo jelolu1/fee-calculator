@@ -1,0 +1,22 @@
+.date-field {
+	display: flex;
+	gap: 10px;
+}
+
+.date-field .div-title span {
+	bottom: -45px;
+}
+
+.input-date {
+	width: 60%;
+	padding: 15px 15px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid var(--blue-color);
+	font-size: 0.95rem;
+	cursor: pointer;
+}
+
+.input-date:focus {
+	outline: none;
+}
